@@ -148,6 +148,8 @@ function doPost(e) {
                 return handleLogin(params);
             case 'placeOrder':
                 return handlePlaceOrder(params);
+            case 'getUserOrders':
+                return handleGetUserOrders(params.email);
             default:
                 return ContentService.createTextOutput(JSON.stringify({
                     success: false,

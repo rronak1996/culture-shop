@@ -232,7 +232,7 @@ async function getUserOrders() {
             };
         }
 
-        const result = await makeAuthGetRequest('getUserOrders', {
+        const result = await makeAuthRequest('getUserOrders', {
             email: user.email
         });
 
