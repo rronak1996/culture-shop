@@ -104,71 +104,82 @@
     <script type="module" src="auth.js"></script>
     <script type="module" src="main.js"></script>
     <script type="module">
-        // Protect this page - require login
-        window.auth.requireAuth();
+        // Wait for auth.js to load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Small delay to ensure window.auth is assigned
+            await new Promise(resolve => setTimeout(resolve, 100));
 
-        // Load user profile
-        function loadUserProfile() {
-            const user = window.auth.getCurrentUser();
-            if (!user) return;
+            // Protect this page - require login
+            if (window.auth) {
+                window.auth.requireAuth();
+            }
 
-            document.getElementById('user-name').textContent = user.name;
-            document.getElementById('user-email').textContent = user.email;
-            document.getElementById('user-mobile').textContent = user.mobile;
-            document.getElementById('user-initial').textContent = user.name.charAt(0).toUpperCase();
-        }
+            // Load user profile
+            function loadUserProfile() {
+                if (!window.auth) return;
+                const user = window.auth.getCurrentUser();
+                if (!user) return;
 
-        // Load user orders
-        async function loadUserOrders() {
-            const loadingDiv = document.getElementById('orders-loading');
-            const emptyDiv = document.getElementById('orders-empty');
-            const listDiv = document.getElementById('orders-list');
+                document.getElementById('user-name').textContent = user.name;
+                document.getElementById('user-email').textContent = user.email;
+                document.getElementById('user-mobile').textContent = user.mobile;
+                document.getElementById('user-initial').textContent = user.name.charAt(0).toUpperCase();
+            }
 
-            try {
-                const result = await window.auth.getUserOrders();
+            // Load user orders
+            async function loadUserOrders() {
+                const loadingDiv = document.getElementById('orders-loading');
+                const emptyDiv = document.getElementById('orders-empty');
+                const listDiv = document.getElementById('orders-list');
 
-                loadingDiv.style.display = 'none';
+                try {
+                    if (!window.auth) {
+                        throw new Error('Auth module not loaded');
+                    }
 
-                if (result.success && result.orders && result.orders.length > 0) {
-                    // Display orders
-                    listDiv.style.display = 'grid';
-                    listDiv.innerHTML = result.orders.map(order => `
-                        <div class="order-card">
-                            <div class="order-header">
-                                <div>
-                                    <h3>${order.orderId}</h3>
-                                    <p class="order-date">${order.dateTime}</p>
+                    const result = await window.auth.getUserOrders();
+
+                    loadingDiv.style.display = 'none';
+
+                    if (result.success && result.orders && result.orders.length > 0) {
+                        // Display orders
+                        listDiv.style.display = 'grid';
+                        listDiv.innerHTML = result.orders.map(order => `
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div>
+                                        <h3>${order.orderId}</h3>
+                                        <p class="order-date">${order.dateTime}</p>
+                                    </div>
+                                    <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
                                 </div>
-                                <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
-                            </div>
-                            <div class="order-items">
-                                <p><strong>Items:</strong> ${order.items}</p>
-                            </div>
-                            <div class="order-footer">
-                                <div class="order-total">
-                                    <span>Total:</span>
-                                    <strong>₹${order.total}</strong>
+                                <div class="order-items">
+                                    <p><strong>Items:</strong> ${order.items}</p>
                                 </div>
-                                <div class="order-details">
-                                    <p><strong>Payment:</strong> ${order.paymentMethod}</p>
-                                    <p><strong>Delivery:</strong> ${order.deliveryTime}</p>
+                                <div class="order-footer">
+                                    <div class="order-total">
+                                        <span>Total:</span>
+                                        <strong>₹${order.total}</strong>
+                                    </div>
+                                    <div class="order-details">
+                                        <p><strong>Payment:</strong> ${order.paymentMethod}</p>
+                                        <p><strong>Delivery:</strong> ${order.deliveryTime}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `).join('');
-                } else {
-                    // No orders found
+                        `).join('');
+                    } else {
+                        // No orders found
+                        emptyDiv.style.display = 'flex';
+                    }
+                } catch (error) {
+                    console.error('Error loading orders:', error);
+                    loadingDiv.style.display = 'none';
                     emptyDiv.style.display = 'flex';
                 }
-            } catch (error) {
-                console.error('Error loading orders:', error);
-                loadingDiv.style.display = 'none';
-                emptyDiv.style.display = 'flex';
             }
-        }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize
             loadUserProfile();
             loadUserOrders();
         });
