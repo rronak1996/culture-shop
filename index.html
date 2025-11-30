@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture | Handcrafted Chocolates in Ahmedabad</title>
+    <meta name="description"
+        content="Experience the pure bliss of Culture's fresh, homemade chocolates. Delivered exclusively in Ahmedabad.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                Culture<span class="logo-dot">.</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="auth-button">
+                    <a href="/login.html" class="btn btn-outline">Login</a>
+                </div>
+                <button class="cart-btn" id="cartBtn" aria-label="Open Cart">
+                    <span class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </span>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-subtitle">Pure & Handcrafted</span>
+                <h1 class="hero-title">Fresh Homemade Chocolates in Ahmedabad</h1>
+                <p class="hero-description">
+                    Indulge in small-batch, artisanal chocolates made with pure ingredients and love.
+                    Delivered fresh to your doorstep in Ahmedabad.
+                </p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn btn-primary">Shop Collection</a>
+                    <a href="#about" class="btn btn-outline">Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 22s5.5-5.5 12-5.5c5 0 8-4.5 8-4.5s-2 8-7 8c-6 0-13-5-13-5Z" />
+                            <path d="M14 16.5 22 2" />
+                        </svg>
+                    </div>
+                    <h3>Pure Ingredients</h3>
+                    <p>No preservatives, just real fruit and premium cocoa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 9.08 0A5.11 5.11 0 0 1 18.59 6 4 4 0 0 1 20 13.87V21H6v-7.13z" />
+                            <line x1="6" y1="17" x2="20" y2="17" />
+                        </svg>
+                    </div>
+                    <h3>Homemade with Care</h3>
+                    <p>Crafted in small batches to ensure perfect quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Same-day or next-day delivery across the city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Our Collection</span>
+                <h2 class="section-title">Curated Flavors</h2>
+                <p class="section-desc">Discover our signature selection of fruit-infused chocolates.</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <span class="section-subtitle">The Culture Story</span>
+                    <h2 class="section-title">Made with Love in Ahmedabad</h2>
+                    <p>
+                        Culture began with a simple passion: to create chocolates that taste as pure as nature intended.
+                        We believe that the best flavors come from real ingredients, not artificial essences.
+                    </p>
+                    <p>
+                        Every batch is handcrafted in our home kitchen in Ahmedabad, ensuring that you get the freshest
+                        chocolate experience possible. From the tangy zest of real oranges to the sweet blush of
+                        strawberries,
+                        our chocolates are a celebration of authentic taste.
+                    </p>
+                    <div class="about-promise">
+                        <div class="promise-item">
+                            <span class="check-icon">✓</span> 100% Vegetarian
+                        </div>
+                        <div class="promise-item">
+                            <span class="check-icon">✓</span> Freshly Made
+                        </div>
+                        <div class="promise-item">
+                            <span class="check-icon">✓</span> Local Business
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image-placeholder">
+                    <!-- Placeholder for brand image -->
+                    <div class="placeholder-content">Culture Kitchen</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <span class="section-subtitle">Get in Touch</span>
+                    <h2 class="section-title">Order & Inquiries</h2>
+                    <p>Have a custom request or want to know more? We'd love to hear from you.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Satellite, Ahmedabad, Gujarat</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <div>
+                                <h4>Phone / WhatsApp</h4>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">✉️</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hello@culture-chocolates.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-note">
+                        <strong>Note:</strong> We currently deliver only within Ahmedabad city limits.
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" required placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Culture.</h3>
+                    <p>Handcrafted happiness, delivered in Ahmedabad.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#menu">Menu</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <!-- Social placeholders -->
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="WhatsApp">WA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Culture Homemade Chocolates. All rights reserved.</p>
+                <p class="location-tag">Made in Ahmedabad, Gujarat 🇮🇳</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button class="close-cart" id="closeCart" aria-label="Close Cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items injected here -->
+            <div class="empty-cart-msg">Your bag is empty. <br>Time to fill it with sweetness!</div>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-total">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">₹0</span>
+            </div>
+            <p class="shipping-note">Shipping calculated at checkout</p>
+            <button class="btn btn-primary full-width" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="close-modal" id="closeCheckout">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm" class="checkout-form">
+                    <div class="form-section">
+                        <h4>Contact Details</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="customer-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile</label>
+                                <input type="tel" id="customer-mobile" name="mobile" pattern="[0-9]{10}" required
+                                    placeholder="10-digit number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email (Optional)</label>
+                            <input type="email" id="customer-email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Delivery Address (Ahmedabad Only)</h4>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea name="address" rows="2" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Area/Locality</label>
+                                <input type="text" name="area" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="text" name="pincode" pattern="[0-9]{6}" required placeholder="3800xx">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Delivery Preference</h4>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="deliveryTime" value="today" checked>
+                                <span>Today (if available)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="deliveryTime" value="tomorrow">
+                                <span>Tomorrow</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Payment Method</h4>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="cod" checked>
+                                <span>Cash on Delivery</span>
+                                <span class="payment-icon">💵</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="upi">
+                                <span>UPI / QR Code</span>
+                                <span class="payment-icon">📱</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="online">
+                                <span>Online Payment (Card/NetBanking)</span>
+                                <span class="payment-icon">💳</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="order-summary-box">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="checkoutSubtotal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery (Ahmedabad)</span>
+                            <span>₹40</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="checkoutTotal">₹0</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full-width">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPI QR Modal -->
+    <div class="modal" id="upiModal">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h3>Scan to Pay</h3>
+                <button class="close-modal" id="closeUpi">&times;</button>
+            </div>
+            <div class="upi-content">
+                <div class="qr-placeholder">
+                    <!-- Replace with actual QR Code image -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=culture@upi&pn=CultureChocolates&am=0&cu=INR"
+                        alt="UPI QR Code" id="upiQrCode">
+                </div>
+                <p class="upi-instruction">Scan this QR code with any UPI app (GPay, PhonePe, Paytm)
+                </p>
+                <div class="form-group" style="margin-top: 20px; text-align: left;">
+                    <label>Enter Transaction ID / UTR</label>
+                    <input type="text" id="transactionId" placeholder="e.g. 123456789012"
+                        style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 12px;">
+                </div>
+                <button class="btn btn-primary full-width" id="confirmUpiBtn">Confirm
+                    Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content text-center">
+            <div class="success-icon">🎉</div>
+            <h3>Order Confirmed!</h3>
+            <p>Thank you, <span id="successName"></span>!</p>
+            <p>Your fresh Culture chocolates will be delivered to <span id="successArea"></span> soon.
+            </p>
+            <p class="order-id-display">Order ID: <span id="successOrderId">#CULTURE-000</span></p>
+            <button class="btn btn-primary" id="closeSuccess">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Maintenance Overlay -->
+    <div id="maintenance-overlay" class="maintenance-overlay">
+        <div class="maintenance-content">
+            <div class="maintenance-icon">🛠️</div>
+            <h2>We are currently under maintenance</h2>
+            <p>We're making some sweet improvements to our shop.</p>
+            <div class="maintenance-contact">
+                <p>For urgent orders or inquiries, please contact:</p>
+                <a href="tel:+919876543210" class="contact-number">📞 +91 98765 43210</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

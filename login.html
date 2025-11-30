@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Culture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="/" class="logo">Culture<span class="logo-dot">.</span></a>
+            <div class="header-actions">
+                <a href="/" class="btn btn-outline">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h1>Welcome Back</h1>
+                        <p>Login to your Culture account</p>
+                    </div>
+
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+
+                        <div id="login-error" class="error-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary full-width">
+                            <span id="login-btn-text">Login</span>
+                            <span id="login-spinner" class="spinner" style="display: none;">⏳</span>
+                        </button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="/signup.html">Sign up</a></p>
+                    </div>
+                </div>
+
+                <div class="auth-image">
+                    <div class="auth-image-placeholder">
+                        <span>🍫</span>
+                        <h2>Premium Chocolates</h2>
+                        <p>Handcrafted with love, delivered with care</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            const btnText = document.getElementById('login-btn-text');
+            const spinner = document.getElementById('login-spinner');
+
+            // Show loading state
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            try {
+                const result = await window.auth.login(email, password);
+
+                if (result.success) {
+                    // Redirect to home page
+                    window.location.href = '/';
+                } else {
+                    // Show error
+                    errorDiv.textContent = result.error || 'Login failed. Please try again.';
+                    errorDiv.style.display = 'block';
+                    btnText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.style.display = 'block';
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Redirect if already logged in
+        if (window.auth.isLoggedIn()) {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+
+</html>
