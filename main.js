@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render Products
 function renderProducts() {
+    if (!productsGrid) return;
     productsGrid.innerHTML = products.map(product => `
         <div class="product-card">
             <div class="product-image">
@@ -147,26 +148,32 @@ window.removeFromCart = function (productId) {
 function updateCart() {
     // Update Count
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
+    if (cartCount) cartCount.textContent = totalItems;
 
     // Update Subtotal
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    cartSubtotal.textContent = `₹${subtotal}`;
+    if (cartSubtotal) cartSubtotal.textContent = `₹${subtotal}`;
 
     // Render Items
+    if (!cartItemsContainer) return;
+
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
             <div class="empty-cart-msg">
                 Your bag is empty.<br>Time to fill it with sweetness!
             </div>
         `;
-        checkoutBtn.disabled = true;
-        checkoutBtn.style.opacity = '0.5';
-        checkoutBtn.style.cursor = 'not-allowed';
+        if (checkoutBtn) {
+            checkoutBtn.disabled = true;
+            checkoutBtn.style.opacity = '0.5';
+            checkoutBtn.style.cursor = 'not-allowed';
+        }
     } else {
-        checkoutBtn.disabled = false;
-        checkoutBtn.style.opacity = '1';
-        checkoutBtn.style.cursor = 'pointer';
+        if (checkoutBtn) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.style.opacity = '1';
+            checkoutBtn.style.cursor = 'pointer';
+        }
 
         cartItemsContainer.innerHTML = cart.map(item => `
             <div class="cart-item">
@@ -231,61 +238,39 @@ function openCheckout() {
     checkoutModal.classList.add('active');
 }
 
-function closeCheckoutModal() {
-    checkoutModal.classList.remove('active');
-}
 
-function setupEventListeners() {
-    // Cart Toggles
-    cartBtn.addEventListener('click', openCart);
-    closeCart.addEventListener('click', closeCartMenu);
-    cartOverlay.addEventListener('click', closeCartMenu);
+// Success Modal
+closeSuccess.addEventListener('click', () => {
+    successModal.classList.remove('active');
+});
 
-    // Checkout Toggles
-    checkoutBtn.addEventListener('click', openCheckout);
-    closeCheckout.addEventListener('click', closeCheckoutModal);
+// UPI Modal
+const upiModal = document.getElementById('upiModal');
+const closeUpi = document.getElementById('closeUpi');
+const confirmUpiBtn = document.getElementById('confirmUpiBtn');
 
-    // Mobile Menu
-    mobileMenuBtn.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
+closeUpi.addEventListener('click', () => {
+    upiModal.classList.remove('active');
+});
+
+confirmUpiBtn.addEventListener('click', () => {
+    const txnId = document.getElementById('transactionId').value;
+    if (!txnId) {
+        alert('Please enter the Transaction ID');
+        return;
+    }
+    upiModal.classList.remove('active');
+    completeOrder(new FormData(checkoutForm), 'upi', txnId);
+});
+
+// Payment Method Change
+const paymentMethods = document.getElementsByName('paymentMethod');
+paymentMethods.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        // Logic for payment method change if needed
     });
+});
 
-    // Checkout Form
-    checkoutForm.addEventListener('submit', handleCheckout);
-
-    // Success Modal
-    closeSuccess.addEventListener('click', () => {
-        successModal.classList.remove('active');
-    });
-
-    // UPI Modal
-    const upiModal = document.getElementById('upiModal');
-    const closeUpi = document.getElementById('closeUpi');
-    const confirmUpiBtn = document.getElementById('confirmUpiBtn');
-
-    closeUpi.addEventListener('click', () => {
-        upiModal.classList.remove('active');
-    });
-
-    confirmUpiBtn.addEventListener('click', () => {
-        const txnId = document.getElementById('transactionId').value;
-        if (!txnId) {
-            alert('Please enter the Transaction ID');
-            return;
-        }
-        upiModal.classList.remove('active');
-        completeOrder(new FormData(checkoutForm), 'upi', txnId);
-    });
-
-    // Payment Method Change
-    const paymentMethods = document.getElementsByName('paymentMethod');
-    paymentMethods.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            // Logic for payment method change if needed
-        });
-    });
-}
 
 function handleCheckout(e) {
     e.preventDefault();
