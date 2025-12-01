@@ -121,9 +121,43 @@ window.addToCart = function (productId) {
     }
 
     updateCart();
-    openCart();
     saveCart();
+
+    // Show visual feedback instead of opening cart
+    showAddToCartNotification(product.name);
 };
+
+// Show notification when item is added to cart
+function showAddToCartNotification(productName) {
+    // Remove any existing notifications
+    const existingNotif = document.querySelector('.add-to-cart-notification');
+    if (existingNotif) {
+        existingNotif.remove();
+    }
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'add-to-cart-notification';
+    notification.innerHTML = `
+        <span class="notif-icon">✓</span>
+        <span class="notif-text">${productName} added to cart</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    // Remove after 2.5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 2500);
+}
 
 window.updateQuantity = function (productId, change) {
     const item = cart.find(item => item.id === productId);
