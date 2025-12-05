@@ -1,54 +1,45 @@
-# How to Publish Your Website for Free (Netlify)
+# Deployment Guide for GitHub Pages
 
-Great news! Your website is built and ready to publish.
+This project is configured to deploy to GitHub Pages using the `gh-pages` package.
 
-The easiest way to publish for free is using **Netlify Drop**.
+## Prerequisites
 
-## Step 1: Locate Your Build Folder
-I have already built your project. The files are in a folder named `dist` inside your project folder:
-`c:\Users\JAY SWAMINARAYAN\.gemini\antigravity\scratch\choco\dist`
+1.  **Git**: Ensure Git is installed and initialized in your project.
+2.  **Node.js**: Ensure Node.js and npm are installed.
+3.  **Remote Repository**: Your local git repository must be connected to a GitHub repository.
 
-## Step 2: Publish to Netlify (Drag & Drop)
+## One-Step Deployment
 
-1.  Open your browser and go to **[app.netlify.com/drop](https://app.netlify.com/drop)**.
-2.  Open your file explorer to your project folder:
-    `c:\Users\JAY SWAMINARAYAN\.gemini\antigravity\scratch\choco`
-3.  Find the folder named **`dist`**.
-4.  **Drag and drop** the `dist` folder onto the Netlify page where it says "Drag and drop your site output folder here".
+We have configured a `deploy` script in `package.json` that handles building and deploying.
 
-## Step 3: That's it!
-*   Netlify will upload your site in a few seconds.
-*   It will give you a **random URL** (like `brave-curie-12345.netlify.app`).
-*   Click that link to see your live website!
+Run the following command in your terminal:
 
-## Important Note for Google Sheets
-Once you have your live Netlify URL:
-1.  Go to your **Google Apps Script**.
-2.  (Optional) You might want to restrict access, but since we set it to "Anyone", it will work fine with your new site too.
-3.  Your order tracking will work on the live site just like it did locally!
+```bash
+npm run deploy
+```
 
-## How to Shut Down Temporarily
+### What this does:
+1.  **Builds** the project (`npm run build`).
+2.  **Uploads** the `dist` folder to the `gh-pages` branch of your GitHub repository.
 
-If you want to take your website offline (e.g., you are out of stock or on vacation):
+## Manual Steps (if you want to do it manually)
 
-1.  **Log in** to your Netlify dashboard.
-2.  Click on your site.
-3.  Go to **Site Settings**.
-4.  Scroll to the bottom ("Danger Zone").
-5.  Click **Delete this site**.
+If you prefer to run the steps individually:
 
-**To Turn It Back On:**
-Just follow the "Publish" steps above again! Drag and drop your `dist` folder, and you are back online instantly.
+1.  **Build the project**:
+    ```bash
+    npm run build
+    ```
 
-## How to Enable Maintenance Mode
+2.  **Deploy the build folder**:
+    ```bash
+    npx gh-pages -d dist
+    ```
 
-If you want to keep the site online but show a "Under Maintenance" message with your contact number:
+## Troubleshooting
 
-1.  Open `main.js` in your code editor.
-2.  Find line 10: `const MAINTENANCE_MODE = false;`
-3.  Change it to: `const MAINTENANCE_MODE = true;`
-4.  Save the file.
-5.  Run `npm run build` in the terminal.
-6.  Deploy the new `dist` folder to Netlify.
-
-Your customers will see a beautiful maintenance screen with your contact number! To disable it, just change it back to `false` and re-deploy.
+-   **"Repo not found"**: Make sure you have added a remote origin:
+    ```bash
+    git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+    ```
+-   **Permissions**: Ensure you are logged in to git and have write access to the repository.

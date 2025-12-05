@@ -93,7 +93,6 @@ function renderProducts() {
         <div class="product-card">
             <div class="product-image">
                 <div class="product-placeholder">🍫</div>
-                <!-- <img src="${product.image}" alt="${product.name}"> -->
             </div>
             <div class="product-details">
                 <h3 class="product-name">${product.name}</h3>

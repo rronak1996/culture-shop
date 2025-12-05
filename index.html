@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/whatsapp-styles.css">
     <link rel="stylesheet" href="/premium-enhancements.css">
+    <link rel="stylesheet" href="/review-form.css">
 </head>
 
 <body>
@@ -92,6 +93,9 @@
                     <a href="#menu" class="btn btn-blue">Shop Collection</a>
                     <a href="#about" class="btn btn-outline">Our Story</a>
                 </div>
+            </div>
+            <div class="hero-image">
+                <img src="/assets/product-photo.jpg" alt="Culture Chocolates" class="hero-product-img">
             </div>
         </div>
     </section>
@@ -206,7 +210,8 @@
                         ★★★★★
                     </div>
                     <p class="testimonial-text">
-                        "Absolutely delicious! The chocolates are so fresh and flavorful. The strawberry ones are my favorite. Will definitely order again!"
+                        "Absolutely delicious! The chocolates are so fresh and flavorful. The strawberry ones are my
+                        favorite. Will definitely order again!"
                     </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">P</div>
@@ -222,7 +227,8 @@
                         ★★★★★
                     </div>
                     <p class="testimonial-text">
-                        "Best homemade chocolates in the city! The quality is outstanding and you can really taste the love that goes into making them. Perfect for gifting!"
+                        "Best homemade chocolates in the city! The quality is outstanding and you can really taste the
+                        love that goes into making them. Perfect for gifting!"
                     </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">R</div>
@@ -238,7 +244,8 @@
                         ★★★★★
                     </div>
                     <p class="testimonial-text">
-                        "I ordered for my mom's birthday and she loved them! The packaging was beautiful and the taste was divine. Thank you Culture!"
+                        "I ordered for my mom's birthday and she loved them! The packaging was beautiful and the taste
+                        was divine. Thank you Culture!"
                     </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">M</div>
@@ -248,6 +255,71 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add Your Review Section -->
+    <section class="add-review-section">
+        <div class="container">
+            <div class="review-form-wrapper">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">Share Your Experience</span>
+                    <h2 class="section-title">Write a Review</h2>
+                    <p class="section-desc">Help others discover our chocolates!</p>
+                </div>
+
+                <form class="review-form" id="reviewForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="review-name">Your Name *</label>
+                            <input type="text" id="review-name" name="name" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="review-location">Location</label>
+                            <input type="text" id="review-location" name="location" placeholder="e.g., Ahmedabad">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Rating *</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">☆</span>
+                            <span class="star" data-rating="2">☆</span>
+                            <span class="star" data-rating="3">☆</span>
+                            <span class="star" data-rating="4">☆</span>
+                            <span class="star" data-rating="5">☆</span>
+                        </div>
+                        <input type="hidden" id="rating-value" name="rating" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-text">Your Review *</label>
+                        <textarea id="review-text" name="review" rows="5" required
+                            placeholder="Share your thoughts about our chocolates..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-email">Email (optional)</label>
+                        <input type="email" id="review-email" name="email"
+                            placeholder="We'll notify you when your review is published">
+                    </div>
+
+                    <div class="review-note">
+                        <small>Your review will be published after verification. Thank you for sharing!</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full-width" id="submitReviewBtn">
+                        <span id="review-btn-text">Submit Review</span>
+                        <span id="review-spinner" class="spinner" style="display: none;">⏳</span>
+                    </button>
+
+                    <div id="review-success" class="success-message" style="display: none;">
+                        ✓ Thank you! Your review has been submitted successfully.
+                    </div>
+                    <div id="review-error" class="error-message" style="display: none;">
+                        ✗ Sorry, something went wrong. Please try again.
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -328,9 +400,14 @@
                 </div>
                 <div class="footer-social">
                     <!-- Social placeholders -->
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Facebook">FB</a>
-                    <a href="#" aria-label="WhatsApp">WA</a>
+                    <a href="https://www.instagram.com/culture_choco" target="_blank" rel="noopener noreferrer"
+                        aria-label="Follow us on Instagram" class="social-link">
+                        <img src="/assets/instagram-icon.png" alt="Instagram" class="social-icon">
+                        <span>Instagram</span>
+                    </a>
+
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+                        aria-label="Chat on WhatsApp">💬 WhatsApp</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -528,6 +605,7 @@
     <script type="module" src="auth.js"></script>
     <script type="module" src="main.js"></script>
     <script type="module" src="premium-animations.js"></script>
+    <script type="module" src="review-form.js"></script>
 </body>
 
 </html>
