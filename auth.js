@@ -262,14 +262,14 @@ function updateHeaderUI() {
     if (user) {
         // User is logged in
         authButton.innerHTML = `
-            <a href="/account.html" class="btn btn-outline">
+            <a href="account.html" class="btn btn-outline">
                 <span>👤</span> ${user.name}
             </a>
         `;
     } else {
         // User is not logged in
         authButton.innerHTML = `
-            <a href="/login.html" class="btn btn-outline">Login</a>
+            <a href="login.html" class="btn btn-outline">Login</a>
         `;
     }
 }
@@ -295,7 +295,7 @@ function autoFillCheckout() {
  */
 function requireAuth() {
     if (!isLoggedIn()) {
-        window.location.href = '/login.html';
+        window.location.href = 'login.html';
     }
 }
 

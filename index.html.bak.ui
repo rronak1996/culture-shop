@@ -3,39 +3,34 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5DRL6JVB');</script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5DRL6JVB');</script>
     <!-- End Google Tag Manager -->
-
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RRWPFGNS8"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-8RRWPFGNS8');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8RRWPFGNS8');
     </script>
-
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="LG7kINKea3SDvBSopkR1-vP96DZC2Y3HjhgtefMKvDs" />
-    <title>Culture | Handcrafted Chocolates</title>
+    <title>Culture | Handcrafted Chocolates in Ahmedabad</title>
     <meta name="description"
-        content="Experience the pure bliss of Culture's fresh, homemade chocolates. Handcrafted with love and delivered fresh.">
+        content="Experience the pure bliss of Culture's fresh, homemade chocolates. Delivered exclusively in Ahmedabad.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/whatsapp-styles.css">
-    <link rel="stylesheet" href="/premium-enhancements.css">
 </head>
 
 <body>
@@ -83,13 +78,13 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <span class="hero-subtitle">Pure & Handcrafted</span>
-                <h1 class="hero-title">Fresh Homemade Chocolates</h1>
+                <h1 class="hero-title">Fresh Homemade Chocolates in Ahmedabad</h1>
                 <p class="hero-description">
-                    Indulge in small batch, artisanal chocolates made with pure ingredients and love.
-                    Delivered fresh to your doorstep.
+                    Indulge in small-batch, artisanal chocolates made with pure ingredients and love.
+                    Delivered fresh to your doorstep in Ahmedabad.
                 </p>
                 <div class="hero-btns">
-                    <a href="#menu" class="btn btn-blue">Shop Collection</a>
+                    <a href="#menu" class="btn btn-primary">Shop Collection</a>
                     <a href="#about" class="btn btn-outline">Our Story</a>
                 </div>
             </div>
@@ -134,7 +129,7 @@
                         </svg>
                     </div>
                     <h3>Fast Delivery</h3>
-                    <p>Same day or next day delivery across the city.</p>
+                    <p>Same-day or next-day delivery across the city.</p>
                 </div>
             </div>
         </div>
@@ -161,13 +156,13 @@
             <div class="about-wrapper">
                 <div class="about-content">
                     <span class="section-subtitle">The Culture Story</span>
-                    <h2 class="section-title">Made with Love</h2>
+                    <h2 class="section-title">Made with Love in Ahmedabad</h2>
                     <p>
                         Culture began with a simple passion: to create chocolates that taste as pure as nature intended.
                         We believe that the best flavors come from real ingredients, not artificial essences.
                     </p>
                     <p>
-                        Every batch is handcrafted in our home kitchen, ensuring that you get the freshest
+                        Every batch is handcrafted in our home kitchen in Ahmedabad, ensuring that you get the freshest
                         chocolate experience possible. From the tangy zest of real oranges to the sweet blush of
                         strawberries,
                         our chocolates are a celebration of authentic taste.
@@ -180,7 +175,7 @@
                             <span class="check-icon">✓</span> Freshly Made
                         </div>
                         <div class="promise-item">
-                            <span class="check-icon">✓</span> Premium Quality Assured
+                            <span class="check-icon">✓</span> Local Business
                         </div>
                     </div>
                 </div>
@@ -191,67 +186,6 @@
             </div>
         </div>
     </section>
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header text-center">
-                <span class="section-subtitle">Customer Love</span>
-                <h2 class="section-title">What Our Customers Say</h2>
-                <p class="section-desc">Join thousands of happy chocolate lovers</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        ★★★★★
-                    </div>
-                    <p class="testimonial-text">
-                        "Absolutely delicious! The chocolates are so fresh and flavorful. The strawberry ones are my favorite. Will definitely order again!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">P</div>
-                        <div class="author-info">
-                            <div class="author-name">Priya Sharma</div>
-                            <div class="author-location">Ahmedabad</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card featured">
-                    <div class="testimonial-rating">
-                        ★★★★★
-                    </div>
-                    <p class="testimonial-text">
-                        "Best homemade chocolates in the city! The quality is outstanding and you can really taste the love that goes into making them. Perfect for gifting!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">R</div>
-                        <div class="author-info">
-                            <div class="author-name">Rahul Patel</div>
-                            <div class="author-location">Satellite</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        ★★★★★
-                    </div>
-                    <p class="testimonial-text">
-                        "I ordered for my mom's birthday and she loved them! The packaging was beautiful and the taste was divine. Thank you Culture!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
-                        <div class="author-info">
-                            <div class="author-name">Meera Shah</div>
-                            <div class="author-location">Ahmedabad</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -287,7 +221,7 @@
                     </div>
 
                     <div class="delivery-note">
-                        <strong>Note:</strong> We currently deliver to select locations in Ahmedabad.
+                        <strong>Note:</strong> We currently deliver only within Ahmedabad city limits.
                     </div>
                 </div>
 
@@ -305,8 +239,6 @@
                         <textarea id="message" rows="4" required placeholder="How can we help you?"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary full-width">Send Message</button>
-                    <p style="text-align: center; margin-top: 12px; font-size: 0.9rem; color: var(--text-light, #666);">
-                        📍 Ahmedabad</p>
                 </form>
             </div>
         </div>
@@ -318,7 +250,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>Culture.</h3>
-                    <p>Handcrafted happiness, delivered with love.</p>
+                    <p>Handcrafted happiness, delivered in Ahmedabad.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
@@ -335,16 +267,10 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Culture Homemade Chocolates. All rights reserved.</p>
-                <p class="location-tag">Made in Gujarat 🇮🇳</p>
+                <p class="location-tag">Made in Ahmedabad, Gujarat 🇮🇳</p>
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/919876543210?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
-        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <img src="/assets/whatsapp-icon.png" alt="WhatsApp" />
-    </a>
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -454,7 +380,7 @@
                             <span id="checkoutSubtotal">₹0</span>
                         </div>
                         <div class="summary-row">
-                            <span>Delivery</span>
+                            <span>Delivery (Ahmedabad)</span>
                             <span>₹40</span>
                         </div>
                         <div class="summary-row total">
@@ -464,8 +390,6 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary full-width">Place Order</button>
-                    <p style="text-align: center; margin-top: 12px; font-size: 0.9rem; color: var(--text-light, #666);">
-                        📍 Ahmedabad</p>
                 </form>
             </div>
         </div>
@@ -527,7 +451,6 @@
     <!-- Scripts -->
     <script type="module" src="auth.js"></script>
     <script type="module" src="main.js"></script>
-    <script type="module" src="premium-animations.js"></script>
 </body>
 
 </html>
