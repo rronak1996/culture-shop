@@ -80,7 +80,12 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-background"></div>
+        <div class="hero-video-wrapper">
+            <!-- Keeping class name for easier styling transition, or rename to hero-banner-wrapper -->
+            <img src="/assets/hero-banner.png" alt="Culture Chocolates Banner" class="hero-video">
+            <!-- Reusing class for object-fit styles -->
+            <div class="hero-overlay"></div>
+        </div>
         <div class="container hero-container">
             <div class="hero-content">
                 <span class="hero-subtitle">Pure & Handcrafted</span>
@@ -94,9 +99,8 @@
                     <a href="#about" class="btn btn-outline">Our Story</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="/assets/hero_box.jpg" alt="Culture Chocolates" class="hero-product-img">
-            </div>
+            <!-- Spacer for grid layout -->
+            <div class="hero-spacer"></div>
         </div>
     </section>
 
@@ -188,9 +192,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image-placeholder">
-                    <!-- Placeholder for brand image -->
-                    <div class="placeholder-content">Culture Kitchen</div>
+                <div class="about-image-wrapper">
+                    <img src="/assets/story-image.jpg" alt="Culture Chocolates Gift Box" class="about-img">
                 </div>
             </div>
         </div>
@@ -346,7 +349,7 @@
                             <span class="icon">📞</span>
                             <div>
                                 <h4>Phone / WhatsApp</h4>
-                                <p>+91 98765 43210</p>
+                                <p>+91 93277 35606</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -406,7 +409,7 @@
                         <span>Instagram</span>
                     </a>
 
-                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/919327735606" target="_blank" rel="noopener noreferrer"
                         aria-label="Chat on WhatsApp">💬 WhatsApp</a>
                 </div>
             </div>
@@ -418,7 +421,7 @@
     </footer>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/919876543210?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+    <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <img src="/assets/whatsapp-icon.png" alt="WhatsApp" />
     </a>
@@ -596,7 +599,7 @@
             <p>We're making some sweet improvements to our shop.</p>
             <div class="maintenance-contact">
                 <p>For urgent orders or inquiries, please contact:</p>
-                <a href="tel:+919876543210" class="contact-number">📞 +91 98765 43210</a>
+                <a href="tel:+919327735606" class="contact-number">📞 +91 93277 35606</a>
             </div>
         </div>
     </div>

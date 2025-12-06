@@ -13,7 +13,7 @@ content = content.replace(
 # Update WhatsApp footer link
 content = content.replace(
     '<a href="#" aria-label="WhatsApp">WA</a>',
-    '<a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬 WhatsApp</a>'
+    '<a href="https://wa.me/919327735606" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬 WhatsApp</a>'
 )
 
 # Remove Facebook link

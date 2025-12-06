@@ -321,28 +321,45 @@ button {
     overflow: hidden;
 }
 
-.hero-background {
+/* .hero-background {
+    display: none;
+} */
+
+.hero-video-wrapper {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 45%;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #FDFBF7 0%, #E8F1F7 100%);
+    overflow: hidden;
     z-index: -1;
-    border-radius: 0 0 0 120px;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 55%;
+    /* Reduced width to show more image */
+    height: 100%;
+    /* More subtle gradient: starts slightly transparent, fades out faster */
+    background: linear-gradient(90deg, rgba(253, 251, 247, 0.9) 0%, rgba(253, 251, 247, 0.7) 50%, rgba(253, 251, 247, 0) 100%);
+    z-index: 1;
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(129, 186, 223, 0.15) 0%, rgba(253, 251, 247, 0) 70%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: float 10s infinite ease-in-out;
+    display: none;
+    /* Remove the floating circle animation */
 }
 
 .hero-container {
@@ -351,11 +368,14 @@ button {
     gap: 60px;
     align-items: center;
     width: 100%;
+    /* height: 100%; removed to allow content to dictate height */
 }
 
 .hero-content {
     max-width: 650px;
     padding: 60px 0;
+    z-index: 2;
+    /* Keep above overlay */
 }
 
 .hero-image {
@@ -394,6 +414,8 @@ button {
     font-size: 5rem;
     margin-bottom: 32px;
     line-height: 1.05;
+    /* Revert to dark color (default) or primary-color as overlay is light */
+    color: var(--primary-color);
     animation: fadeInUp 0.8s ease-out 0.2s forwards;
     opacity: 0;
 }
@@ -403,6 +425,9 @@ button {
     color: var(--text-light);
     margin-bottom: 48px;
     max-width: 520px;
+    /* Left align default */
+    margin-left: 0;
+    margin-right: 0;
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
     opacity: 0;
 }
@@ -410,6 +435,8 @@ button {
 .hero-btns {
     display: flex;
     gap: 24px;
+    justify-content: flex-start;
+    /* Revert to left align */
     animation: fadeInUp 0.8s ease-out 0.6s forwards;
     opacity: 0;
 }
@@ -641,28 +668,23 @@ button {
     font-size: 1.2rem;
 }
 
-.about-image-placeholder {
+.about-image-wrapper {
     height: 550px;
-    background-color: var(--secondary-color);
     border-radius: 30px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.5);
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
     overflow: hidden;
+    box-shadow: var(--shadow-md);
+    position: relative;
 }
 
-.about-image-placeholder::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.about-img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), transparent);
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-img {
+    transform: scale(1.05);
 }
 
 /* --- Contact Section --- */
@@ -830,7 +852,7 @@ button {
 }
 
 .footer-social .social-icon {
-    width: 20px;
+    width: 40px;
     height: 20px;
     object-fit: contain;
 }
@@ -1682,6 +1704,75 @@ button {
 @media (max-width: 968px) {
     .hero-title {
         font-size: 3.5rem;
+        color: var(--primary-color);
+        /* Ensure dark text on mobile */
+        text-shadow: none;
+        /* Remove shadow for cleaner dark text */
+    }
+
+    .hero-description {
+        color: var(--text-main);
+        /* Darker description text */
+        text-shadow: none;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 0;
+        justify-items: center;
+        /* Center grid items */
+    }
+
+    /* Fix overlay for mobile - consistent strong overlay for "low visibility" of photo */
+    .hero-overlay {
+        width: 100%;
+        /* Start with significant opacity and go to solid at bottom */
+        background: linear-gradient(180deg, rgba(253, 251, 247, 0.7) 0%, rgba(253, 251, 247, 0.95) 100%);
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* "Put it down" -> Align to bottom */
+        justify-content: flex-end;
+        height: 100%;
+        /* Add significant padding to sit at the bottom quarter */
+        padding-bottom: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-image {
+        order: -1;
+        margin-bottom: 20px;
+    }
+
+    /* Adjust banner image for mobile to show more content */
+    .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        /* Centered to show balanced view */
+    }
+
+    .hero {
+        min-height: 400px;
+        /* Shorter height to reduce zoom factor */
+        height: auto;
     }
 
     .section-title {
