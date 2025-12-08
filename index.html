@@ -547,46 +547,58 @@
                 <div class="modal-content text-center">
                     <div class="modal-header">
                         <h3>Scan to Pay</h3>
-                        style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 12px;">
+                        <button class="close-modal" id="closeUpi">&times;</button>
                     </div>
-                    <button class="btn btn-primary full-width" id="confirmUpiBtn">Confirm
-                        Payment</button>
+                    <div class="upi-content">
+                        <div class="qr-placeholder">
+                            <!-- Replace with actual QR Code image -->
+                            <img src="assets/upi-qr-code.jpg" alt="UPI QR Code" id="upiQrCode">
+                        </div>
+                        <p class="upi-instruction">Scan this QR code with any UPI app (GPay, PhonePe, Paytm)
+                        </p>
+                        <div class="form-group" style="margin-top: 20px; text-align: left;">
+                            <label>Enter Transaction ID / UTR</label>
+                            <input type="text" id="transactionId" placeholder="e.g. 123456789012"
+                                style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 12px;">
+                        </div>
+                        <button class="btn btn-primary full-width" id="confirmUpiBtn">Confirm
+                            Payment</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="modal" id="successModal">
-            <div class="modal-content text-center">
-                <div class="success-icon">🎉</div>
-                <h3>Order Confirmed!</h3>
-                <p>Thank you, <span id="successName"></span>!</p>
-                <p>Your fresh Culture chocolates will be delivered to <span id="successArea"></span> soon.
-                </p>
-                <p class="order-id-display">Order ID: <span id="successOrderId">#CULTURE-000</span></p>
-                <button class="btn btn-primary" id="closeSuccess">Continue Shopping</button>
-            </div>
-        </div>
-
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <!-- Maintenance Overlay -->
-        <div id="maintenance-overlay" class="maintenance-overlay">
-            <div class="maintenance-content">
-                <div class="maintenance-icon">🛠️</div>
-                <h2>We are currently under maintenance</h2>
-                <p>We're making some sweet improvements to our shop.</p>
-                <div class="maintenance-contact">
-                    <p>For urgent orders or inquiries, please contact:</p>
-                    <a href="tel:+919327735606" class="contact-number">📞 +91 93277 35606</a>
+            <div class="modal" id="successModal">
+                <div class="modal-content text-center">
+                    <div class="success-icon">🎉</div>
+                    <h3>Order Confirmed!</h3>
+                    <p>Thank you, <span id="successName"></span>!</p>
+                    <p>Your fresh Culture chocolates will be delivered to <span id="successArea"></span> soon.
+                    </p>
+                    <p class="order-id-display">Order ID: <span id="successOrderId">#CULTURE-000</span></p>
+                    <button class="btn btn-primary" id="closeSuccess">Continue Shopping</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Scripts -->
-        <script type="module" src="auth.js"></script>
-        <script type="module" src="main.js"></script>
-        <script type="module" src="premium-animations.js"></script>
-        <script type="module" src="review-form.js"></script>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <!-- Maintenance Overlay -->
+            <div id="maintenance-overlay" class="maintenance-overlay">
+                <div class="maintenance-content">
+                    <div class="maintenance-icon">🛠️</div>
+                    <h2>We are currently under maintenance</h2>
+                    <p>We're making some sweet improvements to our shop.</p>
+                    <div class="maintenance-contact">
+                        <p>For urgent orders or inquiries, please contact:</p>
+                        <a href="tel:+919327735606" class="contact-number">📞 +91 93277 35606</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scripts -->
+            <script type="module" src="auth.js"></script>
+            <script type="module" src="main.js"></script>
+            <script type="module" src="premium-animations.js"></script>
+            <script type="module" src="review-form.js"></script>
 </body>
 
 </html>
