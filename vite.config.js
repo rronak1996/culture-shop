@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: '/culture-shop/',
+    base: '/culture-choco/',
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
