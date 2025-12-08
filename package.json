@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
-    "homepage": "https://rronak1996.github.io/culture-choco",
+    "homepage": "https://rronak1996.github.io/culture-shop",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
