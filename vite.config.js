@@ -11,7 +11,8 @@ export default defineConfig({
                 main: 'index.html',
                 login: 'login.html',
                 signup: 'signup.html',
-                account: 'account.html'
+                account: 'account.html',
+                shop: 'shop.html'
             }
         }
     }
