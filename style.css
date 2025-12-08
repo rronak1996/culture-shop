@@ -224,24 +224,25 @@ button {
     height: 100%;
 }
 
-.logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.logo-dot {
-    color: var(--accent-gold);
-}
-
-
-/* --- Navigation --- */
-.nav {
+/* Logo Styling */
+.logo-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 4px;
+    width: 100%;
+    text-align: center;
 }
 
 .nav-list {
@@ -321,45 +322,34 @@ button {
     overflow: hidden;
 }
 
-/* .hero-background {
-    display: none;
-} */
-
-.hero-video-wrapper {
+.hero-background {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 45%;
     height: 100%;
-    overflow: hidden;
+    background: linear-gradient(135deg, #FDFBF7 0%, #E8F1F7 100%);
     z-index: -1;
+    border-radius: 0 0 0 120px;
 }
 
+.hero-video-wrapper,
+.hero-overlay,
 .hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 55%;
-    /* Reduced width to show more image */
-    height: 100%;
-    /* More subtle gradient: starts slightly transparent, fades out faster */
-    background: linear-gradient(90deg, rgba(253, 251, 247, 0.9) 0%, rgba(253, 251, 247, 0.7) 50%, rgba(253, 251, 247, 0) 100%);
-    z-index: 1;
+    display: none;
 }
 
 .hero::before {
-    display: none;
-    /* Remove the floating circle animation */
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(129, 186, 223, 0.15) 0%, rgba(253, 251, 247, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 10s infinite ease-in-out;
 }
 
 .hero-container {
@@ -685,6 +675,30 @@ button {
 
 .about-image-wrapper:hover .about-img {
     transform: scale(1.05);
+}
+
+.about-image-placeholder {
+    height: 550px;
+    background-color: var(--secondary-color);
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    overflow: hidden;
+}
+
+.about-image-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), transparent);
 }
 
 /* --- Contact Section --- */

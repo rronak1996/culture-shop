@@ -12,37 +12,69 @@ const MAINTENANCE_MODE = false;
 
 // Culture Product Data
 const products = [
+    // Sugar Free Collection
+    {
+        id: 101,
+        name: 'Dark Delight (Sugar Free)',
+        description: 'Intense 80% dark chocolate with no added sugar. Pure indulgence.',
+        price: 349,
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'sugar-free'
+    },
+    {
+        id: 102,
+        name: 'Almond Rocks (Sugar Free)',
+        description: 'Roasted almonds clustered in sugar-free dark chocolate.',
+        price: 399,
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'sugar-free'
+    },
+
+    // Triple Chocolates
+    {
+        id: 201,
+        name: 'Triple Treat Box',
+        description: 'A heavenly assortment of White, Milk, and Dark chocolates.',
+        price: 499,
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'triple-choco'
+    },
+    {
+        id: 202,
+        name: 'Layered Truffles',
+        description: 'Three layers of chocolate perfection in every bite.',
+        price: 449,
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'triple-choco'
+    },
+
+    // Individual / Custom
+    {
+        id: 301,
+        name: 'Make Your Own Box',
+        description: 'Customize your box with your favorite fruits and nuts.',
+        price: 399,
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'individual',
+        isCustom: true
+    },
+
+    // Previous Favorites (categorized as 'all' or kept for legacy if needed, or assigned a category)
     {
         id: 1,
         name: 'Strawberry Bliss',
-        description: 'Fresh strawberries dipped in 60% dark chocolate. A perfect balance of tart and sweet.',
+        description: 'Fresh strawberries dipped in 60% dark chocolate.',
         price: 249,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80', // Placeholder
-        category: 'Fruit'
-    },
-    {
-        id: 2,
-        name: 'Pineapple Punch',
-        description: 'Tangy dried pineapple chunks coated in creamy milk chocolate. A tropical delight.',
-        price: 229,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80', // Placeholder
-        category: 'Fruit'
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'all' // Displaying in All tab primarily
     },
     {
         id: 3,
         name: 'Zesty Orange',
-        description: 'Candied orange peel enrobed in rich dark chocolate. A classic sophisticated flavor.',
+        description: 'Candied orange peel enrobed in rich dark chocolate.',
         price: 269,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80', // Placeholder
-        category: 'Citrus'
-    },
-    {
-        id: 4,
-        name: 'Apple Crunch',
-        description: 'Crisp apple slices covered in white chocolate with a hint of cinnamon.',
-        price: 239,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80', // Placeholder
-        category: 'Fruit'
+        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        category: 'all'
     }
 ];
 
@@ -88,9 +120,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render Products
 function renderProducts() {
-    if (!productsGrid) return;
-    productsGrid.innerHTML = products.map(product => `
-        <div class="product-card">
+    // 1. Triple Chocolates
+    const gridTriple = document.getElementById('grid-triple');
+    if (gridTriple) {
+        const tripleProducts = products.filter(p => p.category === 'triple-choco');
+        gridTriple.innerHTML = tripleProducts.map(product => createProductCard(product)).join('');
+    }
+
+    // 2. Sugar Free
+    const gridSugarfree = document.getElementById('grid-sugarfree');
+    if (gridSugarfree) {
+        const sugarFreeProducts = products.filter(p => p.category === 'sugar-free');
+        gridSugarfree.innerHTML = sugarFreeProducts.map(product => createProductCard(product)).join('');
+    }
+
+    // 3. Custom / Individual
+    const gridCustom = document.getElementById('grid-custom');
+    if (gridCustom) {
+        const customProducts = products.filter(p => p.category === 'individual');
+        gridCustom.innerHTML = customProducts.map(product => createProductCard(product)).join('');
+    }
+}
+
+function createProductCard(product) {
+    return `
+        <div class="product-card" data-category="${product.category}">
             <div class="product-image">
                 <div class="product-placeholder">🍫</div>
             </div>
@@ -99,13 +153,62 @@ function renderProducts() {
                 <p class="product-desc">${product.description}</p>
                 <div class="product-footer">
                     <span class="product-price">₹${product.price}</span>
-                    <button class="add-btn" onclick="addToCart(${product.id})" aria-label="Add to Cart">
-                        +
+                    <button class="add-btn" 
+                        onclick="${product.isCustom ? 'openCustomization(' + product.id + ')' : 'addToCart(' + product.id + ')'}" 
+                        aria-label="${product.isCustom ? 'Customize' : 'Add to Cart'}">
+                        ${product.isCustom ? '⚙️' : '+'}
                     </button>
                 </div>
             </div>
         </div>
-    `).join('');
+    `;
+}
+
+// Customization Logic
+const customizationModal = document.getElementById('customizationModal');
+const closeCustomization = document.getElementById('closeCustomization');
+const customizationForm = document.getElementById('customizationForm');
+
+window.openCustomization = function (productId) {
+    if (customizationModal) customizationModal.classList.add('active');
+}
+
+if (closeCustomization) {
+    closeCustomization.addEventListener('click', () => {
+        customizationModal.classList.remove('active');
+    });
+}
+
+if (customizationForm) {
+    customizationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const inclusions = formData.getAll('inclusions');
+        const nuts = formData.getAll('nuts');
+
+        if (inclusions.length === 0 && nuts.length === 0) {
+            alert('Please select at least one inclusion or nut.');
+            return;
+        }
+
+        const customProduct = {
+            id: Date.now(), // Unique ID for custom item
+            name: 'Custom Box (' + inclusions.concat(nuts).join(', ') + ')',
+            price: 399,
+            description: 'Customized with ' + inclusions.length + ' inclusions and ' + nuts.length + ' nuts.',
+            image: '',
+            category: 'individual'
+        };
+
+        // Add to cart directly
+        cart.push({ ...customProduct, quantity: 1 });
+        updateCart();
+        saveCart();
+        showAddToCartNotification('Custom Box');
+
+        customizationModal.classList.remove('active');
+        customizationForm.reset();
+    });
 }
 
 // Cart Functions
@@ -356,8 +459,8 @@ function handleCheckout(e) {
         completeOrder(formData, 'cod');
     } else if (method === 'upi') {
         document.getElementById('upiModal').classList.add('active');
-    } else if (method === 'online') {
-        // Razorpay Integration
+    } /* else if (method === 'online') {
+        // Razorpay Integration - DISABLED
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + DELIVERY_FEE;
 
         const options = {
@@ -381,7 +484,7 @@ function handleCheckout(e) {
 
         const rzp1 = new Razorpay(options);
         rzp1.open();
-    }
+    } */
 }
 
 function completeOrder(formData, method, txnId = '') {
