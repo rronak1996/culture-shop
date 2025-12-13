@@ -31,13 +31,16 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="whatsapp-styles.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container header-container">
-            <a href="./" class="logo">Culture<span class="logo-dot">.</span></a>
+            <a href="./" class="logo-container">
+                <img src="assets/logo.png" alt="Culture Chocolates" class="logo-image">
+            </a>
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="./#menu" class="nav-link">Menu</a></li>
@@ -120,9 +123,17 @@
         </div>
     </footer>
 
+
+
     <!-- Scripts -->
     <script type="module" src="auth.js"></script>
     <script type="module" src="account.js"></script>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="assets/whatsapp-icon.png" alt="WhatsApp" />
+    </a>
 </body>
 
 </html>

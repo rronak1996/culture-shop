@@ -26,6 +26,10 @@ async function hashPassword(password) {
  * Make API request to Google Apps Script
  */
 async function makeAuthRequest(action, data) {
+    // Create abort controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
     try {
         const payload = {
             action: action,
@@ -36,16 +40,23 @@ async function makeAuthRequest(action, data) {
         const response = await fetch(AUTH_API_URL, {
             method: 'POST',
             redirect: 'follow',
+            signal: controller.signal,
             headers: {
                 'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify(payload)
         });
 
+        clearTimeout(timeoutId);
         const responseData = await response.json();
         return responseData;
     } catch (error) {
+        clearTimeout(timeoutId);
         console.error('Auth request error:', error);
+
+        if (error.name === 'AbortError') {
+            return { success: false, error: 'Request timed out. Please check your connection and try again.' };
+        }
         return { success: false, error: error.message };
     }
 }

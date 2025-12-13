@@ -1,4 +1,5 @@
-// Premium Enhancement Features - Scroll Reveal Animations
+// Enhanced copy of premium-animations.js without transform that breaks fixed positioning
+// This version uses 'top' instead of 'transform' for parallax effect
 
 // Scroll Reveal Observer
 const observerOptions = {
@@ -52,13 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add parallax effect to hero background
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    if (heroBackground && scrolled < 800) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
+// REMOVED: Parallax effect that was breaking position:fixed
+// The transform property on any parent element creates a containing block
+// which prevents position:fixed from working correctly
 
 console.log('Premium enhancements loaded successfully!');

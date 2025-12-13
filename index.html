@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,6 +23,7 @@
     </script>
 
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="LG7kINKea3SDvBSopkR1-vP96DZC2Y3HjhgtefMKvDs" />
     <title>Culture | Handcrafted Chocolates</title>
@@ -33,10 +34,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="whatsapp-styles.css">
-    <link rel="stylesheet" href="premium-enhancements.css">
-    <link rel="stylesheet" href="review-form.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/whatsapp-styles.css">
+    <link rel="stylesheet" href="/premium-enhancements.css">
+    <link rel="stylesheet" href="/review-form.css">
 </head>
 
 <body>
@@ -44,7 +45,7 @@
     <header class="header" id="header">
         <div class="container header-container">
             <a href="#" class="logo-container">
-                <span class="logo-text">CULTURE</span>
+                <img src="assets/logo.png" alt="Culture Chocolates" class="logo-image">
             </a>
 
             <nav class="nav" id="nav">
@@ -58,7 +59,7 @@
 
             <div class="header-actions">
                 <div class="auth-button">
-                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="/login.html" class="btn btn-outline">Login</a>
                 </div>
                 <button class="cart-btn" id="cartBtn" aria-label="Open Cart">
                     <span class="cart-icon-wrapper">
@@ -92,7 +93,7 @@
                     Delivered fresh to your doorstep.
                 </p>
                 <div class="hero-btns">
-                    <a href="#menu" class="btn btn-blue">Shop Collection</a>
+                    <a href="shop.html" class="btn btn-blue">Shop Collection</a>
                     <a href="#about" class="btn btn-outline">Our Story</a>
                 </div>
             </div>
@@ -219,8 +220,7 @@
                             </div>
                             <p class="testimonial-text">
                                 "Best homemade chocolates in the city! The quality is outstanding and you can really
-                                taste the
-                                love that goes into making them. Perfect for gifting!"
+                                taste the love that goes into making them. Perfect for gifting!"
                             </p>
                             <div class="testimonial-author">
                                 <div class="author-avatar">R</div>
@@ -390,7 +390,7 @@
                         </div>
                         <div class="footer-links">
                             <a href="#home">Home</a>
-                            <a href="#menu">Menu</a>
+                            <a href="shop.html">Menu</a>
                             <a href="#about">About</a>
                             <a href="#contact">Contact</a>
                         </div>
@@ -398,7 +398,7 @@
                             <!-- Social placeholders -->
                             <a href="https://www.instagram.com/culture_choco" target="_blank" rel="noopener noreferrer"
                                 aria-label="Follow us on Instagram" class="social-link">
-                                <img src="assets/instagram-icon.png" alt="Instagram" class="social-icon">
+                                <img src="/assets/instagram-icon.png" alt="Instagram" class="social-icon">
                                 <span>Instagram</span>
                             </a>
 
@@ -416,7 +416,7 @@
             <!-- WhatsApp Float Button -->
             <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
                 class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-                <img src="assets/whatsapp-icon.png" alt="WhatsApp" />
+                <img src="/assets/whatsapp-icon.png" alt="WhatsApp" />
             </a>
 
             <!-- Cart Sidebar -->
@@ -507,12 +507,12 @@
                                     <label class="radio-label">
                                         <input type="radio" name="paymentMethod" value="cod" checked>
                                         <span>Cash on Delivery</span>
-                                        <span class="payment-icon">💵</span>
+                                        <span class="payment-icon">≡ƒÆ╡</span>
                                     </label>
                                     <label class="radio-label">
                                         <input type="radio" name="paymentMethod" value="upi">
                                         <span>UPI / QR Code</span>
-                                        <span class="payment-icon">📱</span>
+                                        <span class="payment-icon">≡ƒô▒</span>
                                     </label>
 
                                 </div>
@@ -552,7 +552,7 @@
                     <div class="upi-content">
                         <div class="qr-placeholder">
                             <!-- Replace with actual QR Code image -->
-                            <img src="assets/upi-qr-code.jpg" alt="UPI QR Code" id="upiQrCode">
+                            <img src="/assets/upi-qr-code.jpg" alt="UPI QR Code" id="upiQrCode">
                         </div>
                         <p class="upi-instruction">Scan this QR code with any UPI app (GPay, PhonePe, Paytm)
                         </p>
@@ -570,7 +570,7 @@
 
             <div class="modal" id="successModal">
                 <div class="modal-content text-center">
-                    <div class="success-icon">🎉</div>
+                    <div class="success-icon">≡ƒÄë</div>
                     <h3>Order Confirmed!</h3>
                     <p>Thank you, <span id="successName"></span>!</p>
                     <p>Your fresh Culture chocolates will be delivered to <span id="successArea"></span> soon.
@@ -599,6 +599,24 @@
             <script type="module" src="main.js"></script>
             <script type="module" src="premium-animations.js"></script>
             <script type="module" src="review-form.js"></script>
+
+            <!-- Script to ensure WhatsApp button is at body level for position:fixed -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const whatsappBtn = document.querySelector('.whatsapp-float');
+                    if (whatsappBtn && whatsappBtn.parentElement !== document.body) {
+                        document.body.appendChild(whatsappBtn);
+                    }
+                });
+            </script>
+
+            <!-- WhatsApp Float Button -->
+            <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+                class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
+                style="position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 99999 !important;">
+                <img src="assets/whatsapp-icon.png" alt="WhatsApp" />
+            </a>
+
 </body>
 
 </html>
