@@ -2762,3 +2762,41 @@ button {
         height: 38px !important;
     }
 }
+
+/* Customization Modal Price Display */
+.price-display {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.price-display .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.price-display .price-row .base-price {
+    font-weight: 500;
+}
+
+.price-display .total-row {
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.price-display .total-row .price-amount {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}

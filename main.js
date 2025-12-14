@@ -51,9 +51,9 @@ const products = [
     // Individual / Custom
     {
         id: 301,
-        name: 'Make Your Own Box',
+        name: 'Make Your Own Chocolate Bar',
         description: 'Customize your box with your favorite fruits and nuts.',
-        price: 399,
+        price: 120,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
         category: 'individual',
         isCustom: true
@@ -168,9 +168,63 @@ function createProductCard(product) {
 const customizationModal = document.getElementById('customizationModal');
 const closeCustomization = document.getElementById('closeCustomization');
 const customizationForm = document.getElementById('customizationForm');
+const customPriceDisplay = document.getElementById('customTotalPrice');
+
+// Topping Prices Configuration
+const CUSTOM_BASE_PRICE = 120;
+const TOPPING_PRICES = {
+    // Fruits/Inclusions
+    'Strawberry': 6,
+    'Blueberry': 6,
+    'Cranberry': 6,
+    'Kiwi': 6,
+    // Nuts
+    'Almonds': 6,
+    'Raisins': 6,
+    'Cashew': 6,
+    'Hazelnuts': 10
+};
+
+// Calculate total price based on selected toppings
+function calculateCustomPrice() {
+    let total = CUSTOM_BASE_PRICE;
+
+    // Get all selected inclusions
+    const selectedInclusions = document.querySelectorAll('input[name="inclusions"]:checked');
+    selectedInclusions.forEach(checkbox => {
+        const toppingName = checkbox.value;
+        if (TOPPING_PRICES[toppingName]) {
+            total += TOPPING_PRICES[toppingName];
+        }
+    });
+
+    // Get all selected nuts
+    const selectedNuts = document.querySelectorAll('input[name="nuts"]:checked');
+    selectedNuts.forEach(checkbox => {
+        const toppingName = checkbox.value;
+        if (TOPPING_PRICES[toppingName]) {
+            total += TOPPING_PRICES[toppingName];
+        }
+    });
+
+    return total;
+}
+
+// Update price display in modal
+function updateCustomPriceDisplay() {
+    const total = calculateCustomPrice();
+    if (customPriceDisplay) {
+        customPriceDisplay.textContent = `₹${total}`;
+    }
+}
 
 window.openCustomization = function (productId) {
-    if (customizationModal) customizationModal.classList.add('active');
+    if (customizationModal) {
+        customizationModal.classList.add('active');
+        // Reset form and update price display
+        if (customizationForm) customizationForm.reset();
+        updateCustomPriceDisplay();
+    }
 }
 
 if (closeCustomization) {
@@ -178,6 +232,14 @@ if (closeCustomization) {
         customizationModal.classList.remove('active');
     });
 }
+
+// Add event listeners to all topping checkboxes for real-time price update
+document.addEventListener('DOMContentLoaded', () => {
+    const toppingCheckboxes = document.querySelectorAll('input[name="inclusions"], input[name="nuts"]');
+    toppingCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateCustomPriceDisplay);
+    });
+});
 
 if (customizationForm) {
     customizationForm.addEventListener('submit', (e) => {
@@ -191,10 +253,13 @@ if (customizationForm) {
             return;
         }
 
+        // Calculate dynamic price
+        const calculatedPrice = calculateCustomPrice();
+
         const customProduct = {
             id: Date.now(), // Unique ID for custom item
-            name: 'Custom Box (' + inclusions.concat(nuts).join(', ') + ')',
-            price: 399,
+            name: 'Custom Chocolate Bar (' + inclusions.concat(nuts).join(', ') + ')',
+            price: calculatedPrice,
             description: 'Customized with ' + inclusions.length + ' inclusions and ' + nuts.length + ' nuts.',
             image: '',
             category: 'individual'
@@ -204,7 +269,7 @@ if (customizationForm) {
         cart.push({ ...customProduct, quantity: 1 });
         updateCart();
         saveCart();
-        showAddToCartNotification('Custom Box');
+        showAddToCartNotification('Custom Chocolate Bar');
 
         customizationModal.classList.remove('active');
         customizationForm.reset();
