@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="order-items">
                             <p><strong>Items:</strong> ${order.items}</p>
                         </div>
+                        ${order.verificationCode ? `
+                        <div class="order-verification">
+                            <span class="verification-label">🔐 Delivery Code:</span>
+                            <span class="verification-code">${order.verificationCode}</span>
+                        </div>
+                        ` : ''}
                         <div class="order-footer">
                             <div class="order-total">
                                 <span>Total:</span>

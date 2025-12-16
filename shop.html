@@ -373,7 +373,37 @@
             <p>Thank you, <span id="successName"></span>!</p>
             <p>Your fresh Culture chocolates will be delivered to <span id="successArea"></span> soon.</p>
             <p class="order-id-display">Order ID: <span id="successOrderId">#CULTURE-000</span></p>
+
+            <!-- Verification Code Section -->
+            <div class="verification-code-section">
+                <p class="verification-label">🔐 Delivery Verification Code</p>
+                <div class="verification-code-box">
+                    <span id="successVerificationCode">------</span>
+                </div>
+                <p class="verification-note">Share this code with the delivery partner to receive your order.</p>
+            </div>
+
             <button class="btn btn-primary" id="closeSuccess">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Login Prompt Modal -->
+    <div class="modal" id="loginPromptModal">
+        <div class="modal-content text-center">
+            <div class="login-prompt-icon">🔒</div>
+            <h3>Login Required</h3>
+            <p>Please login or create an account to place your order.</p>
+            <p class="login-benefit">Benefits of creating an account:</p>
+            <ul class="benefits-list">
+                <li>✓ Track your orders</li>
+                <li>✓ Faster checkout</li>
+                <li>✓ Order history</li>
+            </ul>
+            <div class="login-prompt-buttons">
+                <a href="login.html" class="btn btn-primary">Login</a>
+                <a href="signup.html" class="btn btn-outline">Create Account</a>
+            </div>
+            <button class="close-modal" id="closeLoginPrompt">&times;</button>
         </div>
     </div>
 

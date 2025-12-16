@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify({
                         action: 'submitReview',
+                        apiKey: 'culture-secure-2025',
                         ...formData
                     })
                 });

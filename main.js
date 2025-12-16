@@ -1,7 +1,7 @@
 // Google Sheets Configuration
 // IMPORTANT: Replace this URL with your Google Apps Script web app URL
 // See GOOGLE_SHEETS_SETUP.md for instructions
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby9BEZcv_4eycn_Pjps2u2LxzjpKjHe4t5hS16fk0TV_oXfH35HNI6p3-1dtUauNEY/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxP2BUNvKrZOGF5fUAfXcXOv796T3kl0-65g8hWq-XpmeETj1p0h0-c46qxqSYNd7gs/exec';
 // Security Token (Must match the one in your Apps Script)
 const API_KEY = 'culture-secure-2025';
 
@@ -15,7 +15,7 @@ const products = [
     // Sugar Free Collection
     {
         id: 101,
-        name: 'Dark Delight (Sugar Free)',
+        name: 'Culture | Strawberry Blueberry Élance',
         description: 'Intense 80% dark chocolate with no added sugar. Pure indulgence.',
         price: 349,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
@@ -23,28 +23,28 @@ const products = [
     },
     {
         id: 102,
-        name: 'Almond Rocks (Sugar Free)',
+        name: 'Culture | Cranberry Cashew Majesté',
         description: 'Roasted almonds clustered in sugar-free dark chocolate.',
         price: 399,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        image: 'assets/crane.jpg',
         category: 'sugar-free'
     },
 
     // Triple Chocolates
     {
         id: 201,
-        name: 'Triple Treat Box',
+        name: 'Culture | Pistachio Noir',
         description: 'A heavenly assortment of White, Milk, and Dark chocolates.',
         price: 499,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        image: 'assets/pista.jpg',
         category: 'triple-choco'
     },
     {
         id: 202,
-        name: 'Layered Truffles',
+        name: 'Culture | Almond Cashew Suprême',
         description: 'Three layers of chocolate perfection in every bite.',
         price: 449,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        image: 'assets/almond-cashew.jpg',
         category: 'triple-choco'
     },
 
@@ -54,7 +54,7 @@ const products = [
         name: 'Make Your Own Chocolate Bar',
         description: 'Customize your box with your favorite fruits and nuts.',
         price: 120,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
+        image: 'assets/custom.jpg',
         category: 'individual',
         isCustom: true
     },
@@ -143,20 +143,23 @@ function renderProducts() {
 }
 
 function createProductCard(product) {
+    const hasLocalImage = product.image && product.image.startsWith('assets/');
     return `
         <div class="product-card" data-category="${product.category}">
             <div class="product-image">
-                <div class="product-placeholder">🍫</div>
+                ${hasLocalImage
+            ? `<img src="${product.image}" alt="${product.name}" class="product-img">`
+            : `<div class="product-placeholder">🍫</div>`}
             </div>
             <div class="product-details">
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-desc">${product.description}</p>
                 <div class="product-footer">
                     <span class="product-price">₹${product.price}</span>
-                    <button class="add-btn" 
+                    <button class="add-btn ${product.isCustom ? 'custom-btn' : ''}" 
                         onclick="${product.isCustom ? 'openCustomization(' + product.id + ')' : 'addToCart(' + product.id + ')'}" 
                         aria-label="${product.isCustom ? 'Customize' : 'Add to Cart'}">
-                        ${product.isCustom ? '⚙️' : '+'}
+                        ${product.isCustom ? '⚙️ Select Custom Ingredient' : '+'}
                     </button>
                 </div>
             </div>
@@ -424,6 +427,22 @@ function closeCartMenu() {
 function openCheckout() {
     if (cart.length === 0) return;
 
+    // Check if user is logged in using window.auth from auth.js
+    // If auth module not loaded yet, allow checkout to proceed (fallback)
+    try {
+        if (window.auth && typeof window.auth.isLoggedIn === 'function' && !window.auth.isLoggedIn()) {
+            // Show login prompt modal
+            const loginPromptModal = document.getElementById('loginPromptModal');
+            if (loginPromptModal) {
+                loginPromptModal.classList.add('active');
+            }
+            closeCartMenu();
+            return;
+        }
+    } catch (e) {
+        console.log('Auth check failed, proceeding with checkout:', e);
+    }
+
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const total = subtotal + DELIVERY_FEE;
 
@@ -439,11 +458,20 @@ function openCheckout() {
     checkoutModal.classList.add('active');
 }
 
-
 // Success Modal
 closeSuccess.addEventListener('click', () => {
     successModal.classList.remove('active');
 });
+
+// Login Prompt Modal
+const loginPromptModal = document.getElementById('loginPromptModal');
+const closeLoginPrompt = document.getElementById('closeLoginPrompt');
+
+if (closeLoginPrompt) {
+    closeLoginPrompt.addEventListener('click', () => {
+        loginPromptModal.classList.remove('active');
+    });
+}
 
 // UPI Modal
 const upiModal = document.getElementById('upiModal');
@@ -514,6 +542,17 @@ function setupEventListeners() {
             mobileMenuBtn.classList.toggle('active');
         });
     }
+
+    // Close Login Prompt Modal
+    const closeLoginPrompt = document.getElementById('closeLoginPrompt');
+    if (closeLoginPrompt) {
+        closeLoginPrompt.addEventListener('click', () => {
+            const loginPromptModal = document.getElementById('loginPromptModal');
+            if (loginPromptModal) {
+                loginPromptModal.classList.remove('active');
+            }
+        });
+    }
 }
 function handleCheckout(e) {
     e.preventDefault();
@@ -570,7 +609,19 @@ function completeOrder(formData, method, txnId = '') {
         }
     }
 
-    // Send order to Google Sheets
+    // Generate verification code locally (will be synced with backend)
+    const localVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Show initial success modal with the generated code
+    document.getElementById('successName').textContent = name;
+    document.getElementById('successArea').textContent = area;
+    document.getElementById('successOrderId').textContent = orderId;
+    document.getElementById('successVerificationCode').textContent = localVerificationCode;
+
+    checkoutModal.classList.remove('active');
+    successModal.classList.add('active');
+
+    // Send order to Google Sheets with the verification code
     sendToGoogleSheets({
         orderId: orderId,
         timestamp: new Date().toISOString(),
@@ -590,15 +641,9 @@ function completeOrder(formData, method, txnId = '') {
         })),
         subtotal: subtotal,
         deliveryFee: DELIVERY_FEE,
-        total: total
+        total: total,
+        verificationCode: localVerificationCode
     });
-
-    document.getElementById('successName').textContent = name;
-    document.getElementById('successArea').textContent = area;
-    document.getElementById('successOrderId').textContent = orderId;
-
-    checkoutModal.classList.remove('active');
-    successModal.classList.add('active');
 
     // Clear Cart
     cart = [];
@@ -656,6 +701,9 @@ function sendToGoogleSheets(orderData) {
     if (GOOGLE_SHEETS_URL === 'YOUR_WEB_APP_URL_HERE') {
         console.warn('Google Sheets URL not configured. Order will not be saved to spreadsheet.');
         console.log('Order data:', orderData);
+        // Generate a local verification code for testing
+        const testCode = Math.floor(100000 + Math.random() * 900000).toString();
+        document.getElementById('successVerificationCode').textContent = testCode;
         return;
     }
 
@@ -677,7 +725,8 @@ function sendToGoogleSheets(orderData) {
         subtotal: orderData.subtotal,
         deliveryFee: orderData.deliveryFee,
         total: orderData.total,
-        userEmail: orderData.email // Link to user email
+        userEmail: orderData.email, // Link to user email
+        verificationCode: orderData.verificationCode // Verification code for delivery
     };
 
     // Send data to Google Sheets
@@ -692,6 +741,10 @@ function sendToGoogleSheets(orderData) {
         .then(data => {
             if (data.success) {
                 console.log('Order saved to Google Sheets successfully');
+                // Update verification code from API response
+                if (data.verificationCode) {
+                    document.getElementById('successVerificationCode').textContent = data.verificationCode;
+                }
             } else {
                 console.error('Google Sheets error:', data.error);
             }
@@ -702,3 +755,47 @@ function sendToGoogleSheets(orderData) {
         });
 }
 
+// Contact Form Submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        const formData = {
+            action: 'submitInquiry',
+            apiKey: API_KEY,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            if (GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
+                await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(formData)
+                });
+            }
+
+            // Show success
+            alert('Thank you! Your message has been sent. We will get back to you soon.');
+            contactForm.reset();
+
+        } catch (error) {
+            console.error('Error submitting inquiry:', error);
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}

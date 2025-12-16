@@ -7,6 +7,8 @@
 const API_KEY = 'culture-secure-2025';
 const ORDERS_SHEET_NAME = 'Orders';
 const USERS_SHEET_NAME = 'Users';
+const REVIEWS_SHEET_NAME = 'Reviews';
+const INQUIRIES_SHEET_NAME = 'Inquiries';
 
 // ============================================
 // UTILITY FUNCTIONS
@@ -21,7 +23,7 @@ function hashPassword(password) {
         password,
         Utilities.Charset.UTF_8
     );
-    return rawHash.map(byte => {
+    return rawHash.map(function (byte) {
         const v = (byte < 0) ? 256 + byte : byte;
         return ('0' + v.toString(16)).slice(-2);
     }).join('');
@@ -34,6 +36,13 @@ function generateToken(email) {
     const timestamp = new Date().getTime();
     const randomStr = Math.random().toString(36).substring(2);
     return Utilities.base64Encode(email + ':' + timestamp + ':' + randomStr);
+}
+
+/**
+ * Generate a 6-digit delivery verification code
+ */
+function generateVerificationCode() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 /**
@@ -51,7 +60,11 @@ function getSheet(sheetName) {
         if (sheetName === USERS_SHEET_NAME) {
             sheet.appendRow(['User ID', 'Name', 'Email', 'Mobile', 'Password Hash', 'Created Date', 'Last Login']);
         } else if (sheetName === ORDERS_SHEET_NAME) {
-            sheet.appendRow(['Order ID', 'Date & Time', 'Customer Name', 'Mobile', 'Email', 'Address', 'Area', 'Pincode', 'Delivery Time', 'Payment Method', 'Transaction ID', 'Items', 'Subtotal', 'Delivery Fee', 'Total', 'User Email', 'Order Status']);
+            sheet.appendRow(['Order ID', 'Date & Time', 'Customer Name', 'Mobile', 'Email', 'Address', 'Area', 'Pincode', 'Delivery Time', 'Payment Method', 'Transaction ID', 'Items', 'Subtotal', 'Delivery Fee', 'Total', 'User Email', 'Order Status', 'Verification Code']);
+        } else if (sheetName === REVIEWS_SHEET_NAME) {
+            sheet.appendRow(['Review ID', 'Date & Time', 'Name', 'Location', 'Rating', 'Review Text', 'Email', 'Status']);
+        } else if (sheetName === INQUIRIES_SHEET_NAME) {
+            sheet.appendRow(['Inquiry ID', 'Date & Time', 'Name', 'Email', 'Message', 'Status']);
         }
     }
 
@@ -112,7 +125,8 @@ function getOrdersByEmail(userEmail) {
                 subtotal: data[i][12],
                 deliveryFee: data[i][13],
                 total: data[i][14],
-                status: data[i][16] || 'Pending' // Order Status column
+                status: data[i][16] || 'Pending', // Order Status column
+                verificationCode: data[i][17] || '' // Verification Code column
             });
         }
     }
@@ -150,6 +164,10 @@ function doPost(e) {
                 return handlePlaceOrder(params);
             case 'getUserOrders':
                 return handleGetUserOrders(params.email);
+            case 'submitReview':
+                return handleSubmitReview(params);
+            case 'submitInquiry':
+                return handleSubmitInquiry(params);
             default:
                 return ContentService.createTextOutput(JSON.stringify({
                     success: false,
@@ -335,12 +353,16 @@ function handlePlaceOrder(params) {
         subtotal,
         deliveryFee,
         total,
-        userEmail // Email of logged-in user (if any)
+        userEmail, // Email of logged-in user (if any)
+        verificationCode: providedCode // Verification code from frontend
     } = params;
 
     const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    const itemsStr = items.map(item => `${item.name} (x${item.quantity})`).join(', ');
+    const itemsStr = items.map(function (item) { return item.name + ' (x' + item.quantity + ')'; }).join(', ');
     const orderStatus = 'Pending';
+
+    // Use provided code from frontend, or generate new one if not provided
+    const verificationCode = providedCode || generateVerificationCode();
 
     sheet.appendRow([
         orderId,
@@ -359,12 +381,14 @@ function handlePlaceOrder(params) {
         deliveryFee,
         total,
         userEmail || email, // Link to user email
-        orderStatus
+        orderStatus,
+        verificationCode // Verification code for delivery partner
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({
         success: true,
-        message: 'Order saved successfully'
+        message: 'Order saved successfully',
+        verificationCode: verificationCode
     })).setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -384,5 +408,87 @@ function handleGetUserOrders(email) {
     return ContentService.createTextOutput(JSON.stringify({
         success: true,
         orders: orders
+    })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============================================
+// REVIEW HANDLERS
+// ============================================
+
+/**
+ * Handle review submission
+ */
+function handleSubmitReview(params) {
+    const sheet = getSheet(REVIEWS_SHEET_NAME);
+
+    const { name, location, rating, review, email } = params;
+
+    // Validate required fields
+    if (!name || !rating || !review) {
+        return ContentService.createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Name, rating, and review are required'
+        })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const reviewId = 'REV-' + new Date().getTime();
+    const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    const status = 'Pending Review';
+
+    sheet.appendRow([
+        reviewId,
+        dateTime,
+        name,
+        location || 'Not specified',
+        rating,
+        review,
+        email || 'Not provided',
+        status
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: 'Review submitted successfully',
+        reviewId: reviewId
+    })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============================================
+// INQUIRY HANDLERS
+// ============================================
+
+/**
+ * Handle contact form / order inquiry submission
+ */
+function handleSubmitInquiry(params) {
+    const sheet = getSheet(INQUIRIES_SHEET_NAME);
+
+    const { name, email, message } = params;
+
+    // Validate required fields
+    if (!name || !email || !message) {
+        return ContentService.createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Name, email, and message are required'
+        })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const inquiryId = 'INQ-' + new Date().getTime();
+    const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    const status = 'New';
+
+    sheet.appendRow([
+        inquiryId,
+        dateTime,
+        name,
+        email,
+        message,
+        status
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: 'Inquiry submitted successfully',
+        inquiryId: inquiryId
     })).setMimeType(ContentService.MimeType.JSON);
 }

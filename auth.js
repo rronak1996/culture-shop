@@ -4,7 +4,7 @@
 // ============================================
 
 // Configuration - Google Apps Script URL
-const AUTH_API_URL = 'https://script.google.com/macros/s/AKfycby9BEZcv_4eycn_Pjps2u2LxzjpKjHe4t5hS16fk0TV_oXfH35HNI6p3-1dtUauNEY/exec';
+const AUTH_API_URL = 'https://script.google.com/macros/s/AKfycbxP2BUNvKrZOGF5fUAfXcXOv796T3kl0-65g8hWq-XpmeETj1p0h0-c46qxqSYNd7gs/exec';
 const AUTH_API_KEY = 'culture-secure-2025';
 
 // Session storage keys
