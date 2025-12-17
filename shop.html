@@ -24,17 +24,38 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Collection | Culture Chocolates</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Shop Chocolates Online | Sugar-Free & Custom Chocolates | Culture Ahmedabad</title>
     <meta name="description"
-        content="Browse our full collection of sugar-free, triple chocolate, and customizable fruit-infused chocolates.">
+        content="Shop premium handcrafted chocolates online. Browse sugar-free chocolates, triple chocolate collections, and custom chocolate gifts. Same-day delivery in Ahmedabad, Gujarat.">
+    <meta name="keywords"
+        content="buy chocolates online, sugar-free chocolates, custom chocolate gifts, triple chocolate, chocolate shop Ahmedabad, handcrafted chocolates Gujarat">
+    <link rel="canonical" href="https://culturechocolates.online/shop.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://culturechocolates.online/shop.html">
+    <meta property="og:title" content="Shop Premium Handcrafted Chocolates | Culture">
+    <meta property="og:description"
+        content="Browse our collection of sugar-free, triple chocolate, and custom chocolate gifts. Handcrafted with love in Ahmedabad.">
+    <meta property="og:image" content="https://culturechocolates.online/assets/hero-banner.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shop Premium Chocolates | Culture">
+    <meta name="twitter:description" content="Browse sugar-free, triple chocolate collections. Custom gifts available.">
+
+    <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="whatsapp-styles.css">
-    <link rel="stylesheet" href="premium-enhancements.css">
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/auth-D60xXix0.js"></script>
+  <script type="module" crossorigin src="/assets/premium-animations-DlOwllNh.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/auth-B5mCcCIg.css">
+  <link rel="stylesheet" crossorigin href="/assets/premium-animations-Cw_1UIgT.css">
 </head>
 
 <body>
@@ -42,7 +63,7 @@
     <header class="header" id="header">
         <div class="container header-container">
             <a href="index.html" class="logo-container">
-                <img src="assets/logo.png" alt="Culture Chocolates" class="logo-image">
+                <img src="/assets/logo-BV4t18M-.png" alt="Culture Chocolates" class="logo-image">
             </a>
 
             <nav class="nav" id="nav">
@@ -137,7 +158,7 @@
                 <div class="footer-social">
                     <a href="https://www.instagram.com/culture_choco" target="_blank" rel="noopener noreferrer"
                         aria-label="Follow us on Instagram" class="social-link">
-                        <img src="assets/instagram-icon.png" alt="Instagram" class="social-icon">
+                        <img src="/assets/instagram-icon-D9eohb4r.png" alt="Instagram" class="social-icon">
                         <span>Instagram</span>
                     </a>
                     <a href="https://wa.me/919327735606" target="_blank" rel="noopener noreferrer"
@@ -281,7 +302,7 @@
             </div>
             <div class="upi-content">
                 <div class="qr-placeholder">
-                    <img src="assets/upi-qr-code.jpg" alt="UPI QR Code" id="upiQrCode">
+                    <img src="/assets/upi-qr-code-B7a6UBeb.jpg" alt="UPI QR Code" id="upiQrCode">
                 </div>
                 <p class="upi-instruction">Scan this QR code with any UPI app (GPay, PhonePe, Paytm)</p>
                 <div class="form-group" style="margin-top: 20px; text-align: left;">
@@ -387,6 +408,40 @@
         </div>
     </div>
 
+    <!-- Product Details Modal -->
+    <div class="modal" id="productDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productDetailsName">Product Details</h3>
+                <button class="close-modal" id="closeProductDetails">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-details-grid">
+                    <div class="details-section">
+                        <h4>📋 Ingredients</h4>
+                        <ul id="productIngredientsList"></ul>
+                        <p class="common-info"><em><span id="commonIngredients"></span></em></p>
+                    </div>
+
+                    <div class="details-section">
+                        <h4>⏰ Shelf Life</h4>
+                        <p id="productNote"></p>
+                    </div>
+
+                    <div class="details-section">
+                        <h4>❄️ Storage Directions</h4>
+                        <p id="productDirections"></p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="addToCartFromDetails">Add to Cart - ₹<span
+                            id="productDetailsPrice">0</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Login Prompt Modal -->
     <div class="modal" id="loginPromptModal">
         <div class="modal-content text-center">
@@ -409,15 +464,12 @@
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    <!-- Scripts -->
-    <script type="module" src="auth.js"></script>
-    <script type="module" src="main.js"></script>
-    <script type="module" src="premium-animations.js"></script>
+    <!-- Scripts -->
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <img src="assets/whatsapp-icon.png" alt="WhatsApp" />
+        <img src="/assets/whatsapp-icon-D90DeEC2.png" alt="WhatsApp" />
     </a>
 </body>
 

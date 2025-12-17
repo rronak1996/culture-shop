@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Disallow private/auth pages from being indexed
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /account.html
+
+# Allow crawling of assets
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+
+# Sitemap location
+Sitemap: https://culturechocolates.online/sitemap.xml
