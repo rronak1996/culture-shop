@@ -2973,3 +2973,105 @@ button {
         font-size: 1.3rem;
     }
 }
+
+/* ================================================
+   PRODUCT DETAILS MODAL STYLES
+   ================================================ */
+.product-details-grid {
+    display: grid;
+    gap: 24px;
+    margin: 20px 0;
+}
+
+.details-section {
+    padding: 20px;
+    background: linear-gradient(135deg, #FDFBF7 0%, #F5F8FA 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.details-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(61, 36, 18, 0.08);
+}
+
+.details-section h4 {
+    margin-bottom: 16px;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#productIngredientsList {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#productIngredientsList li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+#productIngredientsList li:hover {
+    background: #fafafa;
+    transform: translateX(4px);
+}
+
+#productIngredientsList li:last-child {
+    margin-bottom: 0;
+}
+
+.common-info {
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(129, 186, 223, 0.1);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.details-section p {
+    color: var(--text-color);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin: 0;
+}
+
+#addToCartFromDetails {
+    width: 100%;
+    margin-top: 24px;
+    font-size: 1.05rem;
+    padding: 14px 24px;
+}
+
+/* Mobile responsive for product details */
+@media (max-width: 768px) {
+    .product-details-grid {
+        gap: 16px;
+    }
+
+    .details-section {
+        padding: 16px;
+    }
+
+    .details-section h4 {
+        font-size: 1rem;
+    }
+
+    #productIngredientsList li {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}

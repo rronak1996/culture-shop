@@ -24,9 +24,29 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Collection | Culture Chocolates</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Shop Chocolates Online | Sugar-Free & Custom Chocolates | Culture Ahmedabad</title>
     <meta name="description"
-        content="Browse our full collection of sugar-free, triple chocolate, and customizable fruit-infused chocolates.">
+        content="Shop premium handcrafted chocolates online. Browse sugar-free chocolates, triple chocolate collections, and custom chocolate gifts. Same-day delivery in Ahmedabad, Gujarat.">
+    <meta name="keywords"
+        content="buy chocolates online, sugar-free chocolates, custom chocolate gifts, triple chocolate, chocolate shop Ahmedabad, handcrafted chocolates Gujarat">
+    <link rel="canonical" href="https://culturechocolates.online/shop.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://culturechocolates.online/shop.html">
+    <meta property="og:title" content="Shop Premium Handcrafted Chocolates | Culture">
+    <meta property="og:description"
+        content="Browse our collection of sugar-free, triple chocolate, and custom chocolate gifts. Handcrafted with love in Ahmedabad.">
+    <meta property="og:image" content="https://culturechocolates.online/assets/hero-banner.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shop Premium Chocolates | Culture">
+    <meta name="twitter:description" content="Browse sugar-free, triple chocolate collections. Custom gifts available.">
+
+    <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -384,6 +404,40 @@
             </div>
 
             <button class="btn btn-primary" id="closeSuccess">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="productDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productDetailsName">Product Details</h3>
+                <button class="close-modal" id="closeProductDetails">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-details-grid">
+                    <div class="details-section">
+                        <h4>📋 Ingredients</h4>
+                        <ul id="productIngredientsList"></ul>
+                        <p class="common-info"><em><span id="commonIngredients"></span></em></p>
+                    </div>
+
+                    <div class="details-section">
+                        <h4>⏰ Shelf Life</h4>
+                        <p id="productNote"></p>
+                    </div>
+
+                    <div class="details-section">
+                        <h4>❄️ Storage Directions</h4>
+                        <p id="productDirections"></p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="addToCartFromDetails">Add to Cart - ₹<span
+                            id="productDetailsPrice">0</span></button>
+                </div>
+            </div>
         </div>
     </div>
 

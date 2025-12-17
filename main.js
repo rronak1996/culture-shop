@@ -10,6 +10,13 @@ const API_KEY = 'culture-secure-2025';
 // Set this to false to show the normal website
 const MAINTENANCE_MODE = false;
 
+// Common product information
+const COMMON_PRODUCT_INFO = {
+    note: "Use the chocolates before 1 month after purchasing",
+    directions: "Put chocolates in refrigerator after getting order before using it",
+    commonIngredients: "Chocolate base, premium toppings, zero added sugar, zero preservatives"
+};
+
 // Culture Product Data
 const products = [
     // Sugar Free Collection
@@ -19,7 +26,8 @@ const products = [
         description: 'Intense 80% dark chocolate with no added sugar. Pure indulgence.',
         price: 349,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'sugar-free'
+        category: 'sugar-free',
+        ingredients: ['Dark chocolate (80% cocoa)', 'Strawberry', 'Blueberry', 'Natural sweetener (Stevia)']
     },
     {
         id: 102,
@@ -27,7 +35,8 @@ const products = [
         description: 'Roasted almonds clustered in sugar-free dark chocolate.',
         price: 399,
         image: 'assets/crane.jpg',
-        category: 'sugar-free'
+        category: 'sugar-free',
+        ingredients: ['Dark chocolate (70% cocoa)', 'Cranberry', 'Cashew', 'Roasted almonds', 'Natural sweetener (Stevia)']
     },
 
     // Triple Chocolates
@@ -37,7 +46,8 @@ const products = [
         description: 'A heavenly assortment of White, Milk, and Dark chocolates.',
         price: 499,
         image: 'assets/pista.jpg',
-        category: 'triple-choco'
+        category: 'triple-choco',
+        ingredients: ['White chocolate', 'Milk chocolate', 'Dark chocolate (70% cocoa)', 'Pistachio', 'Cocoa butter']
     },
     {
         id: 202,
@@ -45,7 +55,8 @@ const products = [
         description: 'Three layers of chocolate perfection in every bite.',
         price: 449,
         image: 'assets/almond-cashew.jpg',
-        category: 'triple-choco'
+        category: 'triple-choco',
+        ingredients: ['White chocolate', 'Milk chocolate', 'Dark chocolate', 'Almonds', 'Cashew', 'Cocoa butter']
     },
 
     // Individual / Custom
@@ -56,7 +67,8 @@ const products = [
         price: 120,
         image: 'assets/custom.jpg',
         category: 'individual',
-        isCustom: true
+        isCustom: true,
+        ingredients: ['Choose your own: Strawberry, Blueberry, Cranberry, Kiwi, Almonds, Raisins, Cashew, Hazelnuts']
     },
 
     // Previous Favorites (categorized as 'all' or kept for legacy if needed, or assigned a category)
@@ -66,7 +78,8 @@ const products = [
         description: 'Fresh strawberries dipped in 60% dark chocolate.',
         price: 249,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'all' // Displaying in All tab primarily
+        category: 'all', // Displaying in All tab primarily
+        ingredients: ['Dark chocolate (60% cocoa)', 'Fresh strawberries', 'Cocoa butter']
     },
     {
         id: 3,
@@ -74,7 +87,8 @@ const products = [
         description: 'Candied orange peel enrobed in rich dark chocolate.',
         price: 269,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'all'
+        category: 'all',
+        ingredients: ['Dark chocolate (70% cocoa)', 'Candied orange peel', 'Orange extract', 'Cocoa butter']
     }
 ];
 
@@ -104,6 +118,12 @@ const checkoutSubtotal = document.getElementById('checkoutSubtotal');
 const checkoutTotal = document.getElementById('checkoutTotal');
 const successModal = document.getElementById('successModal');
 const closeSuccess = document.getElementById('closeSuccess');
+
+// Product Details Elements
+const productDetailsModal = document.getElementById('productDetailsModal');
+const closeProductDetails = document.getElementById('closeProductDetails');
+const addToCartFromDetails = document.getElementById('addToCartFromDetails');
+let currentProductId = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -146,7 +166,7 @@ function createProductCard(product) {
     const hasLocalImage = product.image && product.image.startsWith('assets/');
     return `
         <div class="product-card" data-category="${product.category}">
-            <div class="product-image">
+            <div class="product-image" onclick="openProductDetails(${product.id})">
                 ${hasLocalImage
             ? `<img src="${product.image}" alt="${product.name}" class="product-img">`
             : `<div class="product-placeholder">🍫</div>`}
@@ -553,7 +573,62 @@ function setupEventListeners() {
             }
         });
     }
+
+    // Close Product Details Modal
+    if (closeProductDetails) {
+        closeProductDetails.addEventListener('click', () => {
+            productDetailsModal.classList.remove('active');
+        });
+    }
+
+    // Add to Cart from Details
+    if (addToCartFromDetails) {
+        addToCartFromDetails.addEventListener('click', () => {
+            if (currentProductId) {
+                addToCart(currentProductId);
+                productDetailsModal.classList.remove('active');
+            }
+        });
+    }
 }
+
+// Open Product Details Modal
+window.openProductDetails = function (productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    currentProductId = productId;
+
+    // Set product name
+    document.getElementById('productDetailsName').textContent = product.name;
+
+    // Set ingredients list
+    const ingredientsList = document.getElementById('productIngredientsList');
+    if (product.ingredients && product.ingredients.length > 0) {
+        ingredientsList.innerHTML = product.ingredients
+            .map(ingredient => `<li>✓ ${ingredient}</li>`)
+            .join('');
+    } else {
+        ingredientsList.innerHTML = '<li>No specific ingredients listed</li>';
+    }
+
+    // Set common ingredients
+    document.getElementById('commonIngredients').textContent = COMMON_PRODUCT_INFO.commonIngredients;
+
+    // Set note
+    document.getElementById('productNote').textContent = COMMON_PRODUCT_INFO.note;
+
+    // Set directions
+    document.getElementById('productDirections').textContent = COMMON_PRODUCT_INFO.directions;
+
+    // Set price in button
+    document.getElementById('productDetailsPrice').textContent = product.price;
+
+    // Show modal
+    if (productDetailsModal) {
+        productDetailsModal.classList.add('active');
+    }
+};
 function handleCheckout(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
