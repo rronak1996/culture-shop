@@ -2929,6 +2929,24 @@ button {
     .about-video {
         max-width: 100%;
         border-radius: 16px;
+        /* Hide video on mobile for performance - saves bandwidth */
+        display: none !important;
+    }
+
+    /* Show placeholder background instead of video on mobile */
+    .about-image-wrapper {
+        min-height: 300px;
+        background: linear-gradient(135deg, rgba(129, 186, 223, 0.1) 0%, rgba(196, 164, 132, 0.1) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-image-wrapper::after {
+        content: "🍫";
+        font-size: 4rem;
+        opacity: 0.3;
     }
 }
 
