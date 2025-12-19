@@ -163,11 +163,13 @@ function renderProducts() {
 }
 
 function createProductCard(product) {
-    const hasLocalImage = product.image && product.image.startsWith('assets/');
+    // Check if product has any image URL (local or external)
+    const hasImage = product.image && product.image.trim() !== '';
+
     return `
         <div class="product-card" data-category="${product.category}">
             <div class="product-image" onclick="openProductDetails(${product.id})">
-                ${hasLocalImage
+                ${hasImage
             ? `<img src="${product.image}" alt="${product.name}" class="product-img">`
             : `<div class="product-placeholder">🍫</div>`}
             </div>
@@ -237,7 +239,7 @@ function calculateCustomPrice() {
 function updateCustomPriceDisplay() {
     const total = calculateCustomPrice();
     if (customPriceDisplay) {
-        customPriceDisplay.textContent = `₹${total}`;
+        customPriceDisplay.textContent = `₹${total} `;
     }
 }
 
@@ -329,8 +331,8 @@ function showAddToCartNotification(productName) {
     const notification = document.createElement('div');
     notification.className = 'add-to-cart-notification';
     notification.innerHTML = `
-        <span class="notif-icon">✓</span>
-        <span class="notif-text">${productName} added to cart</span>
+        < span class="notif-icon" >✓</span >
+            <span class="notif-text">${productName} added to cart</span>
     `;
 
     document.body.appendChild(notification);
@@ -376,16 +378,16 @@ function updateCart() {
 
     // Update Subtotal
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    if (cartSubtotal) cartSubtotal.textContent = `₹${subtotal}`;
+    if (cartSubtotal) cartSubtotal.textContent = `₹${subtotal} `;
 
     // Render Items
     if (!cartItemsContainer) return;
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
-            <div class="empty-cart-msg">
-                Your bag is empty.<br>Time to fill it with sweetness!
-            </div>
+        < div class="empty-cart-msg" >
+            Your bag is empty.< br > Time to fill it with sweetness!
+            </div >
         `;
         if (checkoutBtn) {
             checkoutBtn.disabled = true;
@@ -400,7 +402,7 @@ function updateCart() {
         }
 
         cartItemsContainer.innerHTML = cart.map(item => `
-            <div class="cart-item">
+        < div class="cart-item" >
                 <div class="cart-item-img">🍫</div>
                 <div class="cart-item-details">
                     <div class="cart-item-name">${item.name}</div>
@@ -414,7 +416,7 @@ function updateCart() {
                         <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
                     </div>
                 </div>
-            </div>
+            </div >
         `).join('');
     }
 }
@@ -466,8 +468,8 @@ function openCheckout() {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const total = subtotal + DELIVERY_FEE;
 
-    checkoutSubtotal.textContent = `₹${subtotal}`;
-    checkoutTotal.textContent = `₹${total}`;
+    checkoutSubtotal.textContent = `₹${subtotal} `;
+    checkoutTotal.textContent = `₹${total} `;
 
     // Auto-fill form if user is logged in
     if (typeof autoFillCheckout === 'function') {
@@ -606,7 +608,7 @@ window.openProductDetails = function (productId) {
     const ingredientsList = document.getElementById('productIngredientsList');
     if (product.ingredients && product.ingredients.length > 0) {
         ingredientsList.innerHTML = product.ingredients
-            .map(ingredient => `<li>✓ ${ingredient}</li>`)
+            .map(ingredient => `< li >✓ ${ingredient}</li > `)
             .join('');
     } else {
         ingredientsList.innerHTML = '<li>No specific ingredients listed</li>';
