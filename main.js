@@ -24,7 +24,7 @@ const products = [
         id: 101,
         name: 'Culture | Strawberry Blueberry Élance',
         description: 'Intense 80% dark chocolate with no added sugar. Pure indulgence.',
-        price: 349,
+        price: 179,
         image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
         category: 'sugar-free',
         ingredients: ['Dark chocolate (80% cocoa)', 'Strawberry', 'Blueberry', 'Natural sweetener (Stevia)']
@@ -33,7 +33,7 @@ const products = [
         id: 102,
         name: 'Culture | Cranberry Cashew Majesté',
         description: 'Roasted almonds clustered in sugar-free dark chocolate.',
-        price: 399,
+        price: 179,
         image: 'assets/crane.jpg',
         category: 'sugar-free',
         ingredients: ['Dark chocolate (70% cocoa)', 'Cranberry', 'Cashew', 'Roasted almonds', 'Natural sweetener (Stevia)']
@@ -44,7 +44,7 @@ const products = [
         id: 201,
         name: 'Culture | Pistachio Noir',
         description: 'A heavenly assortment of White, Milk, and Dark chocolates.',
-        price: 499,
+        price: 179,
         image: 'assets/pista.jpg',
         category: 'triple-choco',
         ingredients: ['White chocolate', 'Milk chocolate', 'Dark chocolate (70% cocoa)', 'Pistachio', 'Cocoa butter']
@@ -53,7 +53,7 @@ const products = [
         id: 202,
         name: 'Culture | Almond Cashew Suprême',
         description: 'Three layers of chocolate perfection in every bite.',
-        price: 449,
+        price: 189,
         image: 'assets/almond-cashew.jpg',
         category: 'triple-choco',
         ingredients: ['White chocolate', 'Milk chocolate', 'Dark chocolate', 'Almonds', 'Cashew', 'Cocoa butter']
@@ -64,7 +64,7 @@ const products = [
         id: 301,
         name: 'Make Your Own Chocolate Bar',
         description: 'Customize your box with your favorite fruits and nuts.',
-        price: 120,
+        price: 140,
         image: 'assets/custom.jpg',
         category: 'individual',
         isCustom: true,
