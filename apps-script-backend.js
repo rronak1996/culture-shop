@@ -7,6 +7,7 @@
 const API_KEY = 'culture-secure-2025';
 const ORDERS_SHEET_NAME = 'Orders';
 const USERS_SHEET_NAME = 'Users';
+const REVIEWS_SHEET_NAME = 'Reviews';
 
 // ============================================
 // UTILITY FUNCTIONS
@@ -52,6 +53,8 @@ function getSheet(sheetName) {
             sheet.appendRow(['User ID', 'Name', 'Email', 'Mobile', 'Password Hash', 'Created Date', 'Last Login']);
         } else if (sheetName === ORDERS_SHEET_NAME) {
             sheet.appendRow(['Order ID', 'Date & Time', 'Customer Name', 'Mobile', 'Email', 'Address', 'Area', 'Pincode', 'Delivery Time', 'Payment Method', 'Transaction ID', 'Items', 'Subtotal', 'Delivery Fee', 'Total', 'User Email', 'Order Status']);
+        } else if (sheetName === REVIEWS_SHEET_NAME) {
+            sheet.appendRow(['Date & Time', 'Name', 'Location', 'Rating', 'Review', 'Email']);
         }
     }
 
@@ -150,6 +153,8 @@ function doPost(e) {
                 return handlePlaceOrder(params);
             case 'getUserOrders':
                 return handleGetUserOrders(params.email);
+            case 'submitReview':
+                return handleSubmitReview(params);
             default:
                 return ContentService.createTextOutput(JSON.stringify({
                     success: false,
@@ -385,5 +390,42 @@ function handleGetUserOrders(email) {
     return ContentService.createTextOutput(JSON.stringify({
         success: true,
         orders: orders
+    })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============================================
+// REVIEW HANDLERS
+// ============================================
+
+/**
+ * Handle review submission
+ */
+function handleSubmitReview(params) {
+    const { name, location, rating, review, email, dateTime } = params;
+
+    // Validate required fields
+    if (!name || !rating || !review) {
+        return ContentService.createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Name, rating, and review are required'
+        })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // Get or create Reviews sheet
+    const sheet = getSheet(REVIEWS_SHEET_NAME);
+
+    // Add review to sheet
+    sheet.appendRow([
+        dateTime || new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        name,
+        location || 'Not specified',
+        rating,
+        review,
+        email || 'Not provided'
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: 'Review submitted successfully'
     })).setMimeType(ContentService.MimeType.JSON);
 }

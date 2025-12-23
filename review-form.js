@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Submit to Google Sheets (using your existing Apps Script)
                 // You'll need to add a new sheet called "Reviews" in your Google Sheet
-                const response = await fetch(CONFIG.GOOGLE_APPS_SCRIPT_URL, {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     cache: 'no-cache',
