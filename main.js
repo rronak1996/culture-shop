@@ -196,7 +196,7 @@ const customizationForm = document.getElementById('customizationForm');
 const customPriceDisplay = document.getElementById('customTotalPrice');
 
 // Topping Prices Configuration
-const CUSTOM_BASE_PRICE = 120;
+const CUSTOM_BASE_PRICE = 140;
 const TOPPING_PRICES = {
     // Fruits/Inclusions
     'Strawberry': 6,

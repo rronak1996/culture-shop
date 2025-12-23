@@ -16,7 +16,8 @@
 
     /* Spacing */
     --container-width: 1200px;
-    --header-height: 80px;
+    --header-height: 130px;
+    /* Increased for larger logo */
 
     /* Shadows & Effects */
     --shadow-sm: 0 4px 12px rgba(61, 36, 18, 0.08);
@@ -221,7 +222,8 @@ button {
 }
 
 .header.scrolled {
-    height: 70px;
+    height: 100px;
+    /* Scrolled height - still large enough for logo */
     background-color: #FFFFFF;
     box-shadow: var(--shadow-sm);
 }
@@ -246,7 +248,8 @@ button {
 }
 
 .logo-image {
-    height: 120px;
+    height: 150px;
+    /* Logo size for desktop */
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -2188,7 +2191,8 @@ button {
 /* Tablet and below - 768px */
 @media (max-width: 768px) {
     :root {
-        --header-height: 70px;
+        --header-height: 200px;
+        /* Increased for larger mobile logo */
     }
 
     /* Global overflow fix */
@@ -2214,9 +2218,18 @@ button {
         gap: 12px;
     }
 
+    /* Logo responsive sizing for mobile */
     .logo-image {
-        height: 40px !important;
+        height: 150px !important;
+        /* Much larger size for mobile */
+        width: fit-content !important;
     }
+
+    .logo-container {
+        margin-left: 0 !important;
+        /* Reset left margin for mobile */
+    }
+
 
     .nav {
         display: none;
@@ -2886,9 +2899,7 @@ button {
         padding: 10px 20px;
     }
 
-    .logo-image {
-        height: 38px !important;
-    }
+    /* Logo size now controlled by 768px media query */
 }
 
 /* Customization Modal Price Display */
@@ -2941,10 +2952,11 @@ button {
 
 @media (max-width: 768px) {
     .about-video {
+        width: 100%;
         max-width: 100%;
         border-radius: 16px;
-        /* Hide video on mobile for performance - saves bandwidth */
-        display: none !important;
+        object-fit: contain;
+        /* Video now visible on mobile */
     }
 
     /* Show placeholder background instead of video on mobile */
