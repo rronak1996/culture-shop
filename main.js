@@ -1,7 +1,7 @@
 // Google Sheets Configuration
 // IMPORTANT: Replace this URL with your Google Apps Script web app URL
 // See GOOGLE_SHEETS_SETUP.md for instructions
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxP2BUNvKrZOGF5fUAfXcXOv796T3kl0-65g8hWq-XpmeETj1p0h0-c46qxqSYNd7gs/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyoN902SlucvKu2eF69MOFfznJ7XeZcb0UXFsLjqw3IoPD2PUd4bTsuayqQ875ZAuBA/exec';
 // Security Token (Must match the one in your Apps Script)
 const API_KEY = 'culture-secure-2025';
 
