@@ -3,7 +3,7 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script async>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
@@ -115,11 +115,7 @@
                 </div>
 
                 <div class="auth-image">
-                    <div class="auth-image-placeholder">
-                        <span>🎁</span>
-                        <h2>Join Our Community</h2>
-                        <p>Get exclusive offers and track your orders easily</p>
-                    </div>
+                    <img src="assets/loginpage.jpg" alt="Premium Chocolates" class="auth-img">
                 </div>
             </div>
         </div>
@@ -177,9 +173,11 @@
         });
 
         // Redirect if already logged in
-        if (window.auth.isLoggedIn()) {
-            window.location.href = './';
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.auth && window.auth.isLoggedIn()) {
+                window.location.href = './';
+            }
+        });
     </script>
 
     <!-- WhatsApp Float Button -->

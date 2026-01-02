@@ -3,7 +3,7 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script async>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
@@ -147,9 +147,11 @@
         });
 
         // Redirect if already logged in
-        if (window.auth.isLoggedIn()) {
-            window.location.href = './';
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.auth && window.auth.isLoggedIn()) {
+                window.location.href = './';
+            }
+        });
     </script>
 
     <!-- WhatsApp Float Button -->
