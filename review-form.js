@@ -1,5 +1,9 @@
 // Review Form Functionality
 
+// Google Sheets Configuration for Review Form
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyoN902SlucvKu2eF69MOFfznJ7XeZcb0UXFsLjqw3IoPD2PUd4bTsuayqQ875ZAuBA/exec';
+const API_KEY = 'culture-secure-2025';
+
 document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('reviewForm');
     const starRating = document.getElementById('starRating');
