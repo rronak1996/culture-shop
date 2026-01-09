@@ -653,6 +653,57 @@ button {
     transform: scale(1.05);
 }
 
+/* --- Product Card Sizing --- */
+/* All products grid - 2 columns, equal size */
+#grid-all-products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#grid-all-products .product-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+#grid-all-products .product-image {
+    height: 280px;
+}
+
+/* Custom product - centered, larger than others */
+#grid-custom {
+    display: flex;
+    justify-content: center;
+}
+
+#grid-custom .product-card {
+    width: 100%;
+    max-width: 500px;
+}
+
+#grid-custom .product-image {
+    height: 400px;
+}
+
+#grid-custom .product-name {
+    font-size: 2rem;
+}
+
+#grid-custom .product-desc {
+    font-size: 1.1rem;
+}
+
+#grid-custom .product-price {
+    font-size: 1.8rem;
+}
+
+#grid-custom .product-details {
+    padding: 40px;
+}
+
 /* --- About Section --- */
 .about {
     padding: 120px 0;
