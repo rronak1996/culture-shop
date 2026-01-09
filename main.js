@@ -21,15 +21,6 @@ const COMMON_PRODUCT_INFO = {
 const products = [
     // Sugar Free Collection
     {
-        id: 101,
-        name: 'Culture | Strawberry Blueberry Élance',
-        description: 'Intense 80% dark chocolate with no added sugar. Pure indulgence.',
-        price: 179,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'sugar-free',
-        ingredients: ['Dark chocolate (80% cocoa)', 'Strawberry', 'Blueberry', 'Natural sweetener (Stevia)']
-    },
-    {
         id: 102,
         name: 'Culture | Cranberry Cashew Majesté',
         description: 'Roasted almonds clustered in sugar-free dark chocolate.',
@@ -74,21 +65,12 @@ const products = [
     // Previous Favorites (categorized as 'all' or kept for legacy if needed, or assigned a category)
     {
         id: 1,
-        name: 'Strawberry Bliss',
-        description: 'Fresh strawberries dipped in 60% dark chocolate.',
+        name: 'Culture | Nuts Overload',
+        description: 'Premium dark chocolate loaded with almonds, pistachios, and cashews.',
         price: 249,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'all', // Displaying in All tab primarily
-        ingredients: ['Dark chocolate (60% cocoa)', 'Fresh strawberries', 'Cocoa butter']
-    },
-    {
-        id: 3,
-        name: 'Zesty Orange',
-        description: 'Candied orange peel enrobed in rich dark chocolate.',
-        price: 269,
-        image: 'https://images.unsplash.com/photo-1548130837-779899e0e378?auto=format&fit=crop&w=500&q=80',
-        category: 'all',
-        ingredients: ['Dark chocolate (70% cocoa)', 'Candied orange peel', 'Orange extract', 'Cocoa butter']
+        image: 'assets/nuts-overload.jpg',
+        category: 'triple-choco', // Displaying in Triple Chocolates section
+        ingredients: ['Dark chocolate (70% cocoa)', 'Almonds', 'Pistachios', 'Cashews', 'Cocoa butter']
     }
 ];
 
@@ -140,21 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render Products
 function renderProducts() {
-    // 1. Triple Chocolates
-    const gridTriple = document.getElementById('grid-triple');
-    if (gridTriple) {
-        const tripleProducts = products.filter(p => p.category === 'triple-choco');
-        gridTriple.innerHTML = tripleProducts.map(product => createProductCard(product)).join('');
+    // 1. All Products (except custom) in one grid
+    const gridAllProducts = document.getElementById('grid-all-products');
+    if (gridAllProducts) {
+        const allProducts = products.filter(p => p.category !== 'individual');
+        gridAllProducts.innerHTML = allProducts.map(product => createProductCard(product)).join('');
     }
 
-    // 2. Sugar Free
-    const gridSugarfree = document.getElementById('grid-sugarfree');
-    if (gridSugarfree) {
-        const sugarFreeProducts = products.filter(p => p.category === 'sugar-free');
-        gridSugarfree.innerHTML = sugarFreeProducts.map(product => createProductCard(product)).join('');
-    }
-
-    // 3. Custom / Individual
+    // 2. Custom / Individual
     const gridCustom = document.getElementById('grid-custom');
     if (gridCustom) {
         const customProducts = products.filter(p => p.category === 'individual');
