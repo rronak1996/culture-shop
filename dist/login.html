@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script async>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DRL6JVB');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RRWPFGNS8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8RRWPFGNS8');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <title>Login | Culture Chocolates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/auth-BzGRAiJA.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/auth-DhM0yTkW.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="./" class="logo-container">
+                <img src="/assets/logo-CqFpK3yx.png" alt="Culture Chocolates" class="logo-image">
+            </a>
+            <div class="header-actions">
+                <a href="./" class="btn btn-outline">← Back to Home</a>
+                <a href="./" class="cart-btn"
+                    style="text-decoration: none; display: flex; align-items: center; justify-content: center; margin-left: 10px;">
+                    🛒
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h1>Welcome Back</h1>
+                        <p>Login to your Culture account</p>
+                    </div>
+
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+
+                        <div id="login-error" class="error-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary full-width">
+                            <span id="login-btn-text">Login</span>
+                            <span id="login-spinner" class="spinner" style="display: none;">⏳</span>
+                        </button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+                    </div>
+                </div>
+
+                <div class="auth-image">
+                    <img src="/assets/loginpage-CaR_J3nK.jpg" alt="Premium Chocolates" class="auth-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Scripts -->
+    <script>
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            const btnText = document.getElementById('login-btn-text');
+            const spinner = document.getElementById('login-spinner');
+
+            // Show loading state
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            try {
+                const result = await window.auth.login(email, password);
+
+                if (result.success) {
+                    // Redirect to home page
+                    window.location.href = './';
+                } else {
+                    // Show error
+                    errorDiv.textContent = result.error || 'Login failed. Please try again.';
+                    errorDiv.style.display = 'block';
+                    btnText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.style.display = 'block';
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Redirect if already logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.auth && window.auth.isLoggedIn()) {
+                window.location.href = './';
+            }
+        });
+    </script>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="/assets/whatsapp-icon-D90DeEC2.png" alt="WhatsApp" />
+    </a>
+</body>
+
+</html>

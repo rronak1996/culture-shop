@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script async>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DRL6JVB');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RRWPFGNS8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8RRWPFGNS8');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <title>Create Account | Culture Chocolates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/auth-BzGRAiJA.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/auth-DhM0yTkW.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="./" class="logo-container">
+                <img src="/assets/logo-CqFpK3yx.png" alt="Culture Chocolates" class="logo-image">
+            </a>
+            <div class="header-actions">
+                <a href="./" class="btn btn-outline">← Back to Home</a>
+                <a href="./" class="cart-btn"
+                    style="text-decoration: none; display: flex; align-items: center; justify-content: center; margin-left: 10px;">
+                    🛒
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Signup Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h1>Create Account</h1>
+                        <p>Join Culture and start shopping</p>
+                    </div>
+
+                    <form id="signup-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number"
+                                pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="At least 6 characters"
+                                minlength="6" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password"
+                                placeholder="Re-enter your password" required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" required>
+                                <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+
+                        <div id="signup-error" class="error-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary full-width">
+                            <span id="signup-btn-text">Create Account</span>
+                            <span id="signup-spinner" class="spinner" style="display: none;">⏳</span>
+                        </button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="login.html">Login</a></p>
+                    </div>
+                </div>
+
+                <div class="auth-image">
+                    <img src="/assets/loginpage-CaR_J3nK.jpg" alt="Premium Chocolates" class="auth-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Scripts -->
+    <script>
+        // Handle signup form submission
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorDiv = document.getElementById('signup-error');
+            const btnText = document.getElementById('signup-btn-text');
+            const spinner = document.getElementById('signup-spinner');
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline';
+            errorDiv.style.display = 'none';
+
+            try {
+                const result = await window.auth.signup(name, email, mobile, password);
+
+                if (result.success) {
+                    // Redirect to home page
+                    window.location.href = './';
+                } else {
+                    // Show error
+                    errorDiv.textContent = result.error || 'Signup failed. Please try again.';
+                    errorDiv.style.display = 'block';
+                    btnText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.style.display = 'block';
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Redirect if already logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.auth && window.auth.isLoggedIn()) {
+                window.location.href = './';
+            }
+        });
+    </script>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="/assets/whatsapp-icon-D90DeEC2.png" alt="WhatsApp" />
+    </a>
+</body>
+
+</html>

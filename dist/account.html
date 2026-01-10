@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script async>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DRL6JVB');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RRWPFGNS8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8RRWPFGNS8');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <title>My Account | Culture Chocolates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/account-DMR-1P7N.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-BzGRAiJA.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-DhM0yTkW.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="./" class="logo-container">
+                <img src="/assets/logo-CqFpK3yx.png" alt="Culture Chocolates" class="logo-image">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="shop.html" class="nav-link">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="./" class="cart-btn"
+                    style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    🛒
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <div class="account-header">
+                <h1>My Account</h1>
+                <button class="btn btn-outline" onclick="window.auth && window.auth.logout()">Logout</button>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="account-content">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <span id="user-initial">U</span>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="user-name">Loading...</h2>
+                            <p id="user-email">Loading...</p>
+                            <p id="user-mobile">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div class="orders-section">
+                    <h2>Order History</h2>
+
+                    <div id="orders-loading" class="loading-state">
+                        <p>⏳ Loading your orders...</p>
+                    </div>
+
+                    <div id="orders-empty" class="empty-state" style="display: none;">
+                        <span class="empty-icon">📦</span>
+                        <h3>No Orders Yet</h3>
+                        <p>Start shopping to see your orders here</p>
+                        <a href="./#menu" class="btn btn-primary">Browse Products</a>
+                    </div>
+
+                    <div id="orders-list" class="orders-list" style="display: none;">
+                        <!-- Orders will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Culture.</h3>
+                    <p>Handcrafted happiness, delivered with love.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="shop.html">Menu</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Culture. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Scripts -->
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919327735606?text=Hi%20Culture!%20I%20would%20like%20to%20know%20more%20about%20your%20chocolates."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="/assets/whatsapp-icon-D90DeEC2.png" alt="WhatsApp" />
+    </a>
+</body>
+
+</html>
