@@ -385,6 +385,39 @@ function handlePlaceOrder(params) {
         verificationCode // Verification code for delivery partner
     ]);
 
+    // --- NEW: SEND EMAIL NOTIFICATION TO OWNER ---
+    try {
+        // You can add multiple emails separated by commas
+        const ownerEmail = "YOUR_EMAIL@gmail.com, SECOND_EMAIL@gmail.com";
+        const subject = `New Order: ${orderId} - ₹${total}`;
+        const body = `
+      New Order Received!
+      
+      Order ID: ${orderId}
+      Customer: ${customerName}
+      Mobile: ${mobile}
+      Amount: ₹${total}
+      Payment: ${paymentMethod}
+      
+      Items:
+      ${items.map(i => `- ${i.name} x${i.quantity}`).join('\n')}
+      
+      Address: ${address}, ${area}, ${pincode}
+      
+      View full details in Google Sheets.
+    `;
+
+        MailApp.sendEmail({
+            to: ownerEmail,
+            subject: subject,
+            body: body
+        });
+    } catch (e) {
+        // Log error but don't fail the order if email fails
+        console.error("Email notification failed: " + e.toString());
+    }
+    // ---------------------------------------------
+
     return ContentService.createTextOutput(JSON.stringify({
         success: true,
         message: 'Order saved successfully',
@@ -491,4 +524,32 @@ function handleSubmitInquiry(params) {
         message: 'Inquiry submitted successfully',
         inquiryId: inquiryId
     })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============================================
+// DEBUGGING / TESTING HELPERS
+// ============================================
+
+/**
+ * ⚠️ RUN THIS FUNCTION MANUALLY IN THE EDITOR TO AUTHORIZE EMAIL PERMISSIONS ⚠️
+ * 1. Select 'testEmail' from the dropdown at the top.
+ * 2. Click 'Run'.
+ * 3. Accept permissions if asked.
+ * 4. Check your inbox.
+ */
+function testEmail() {
+    // You can add multiple emails separated by commas
+    const ownerEmail = "YOUR_EMAIL@gmail.com, SECOND_EMAIL@gmail.com";
+
+    if (ownerEmail.includes("YOUR_EMAIL")) {
+        throw new Error("❌ You forgot to change the email addresses!");
+    }
+
+    MailApp.sendEmail({
+        to: ownerEmail,
+        subject: "Test Notification from Culture Chocolates",
+        body: "If you are reading this, your email notifications are working! You can now deploy the new version."
+    });
+
+    Logger.log("✅ Email sent successfully to: " + ownerEmail);
 }

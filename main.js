@@ -67,7 +67,7 @@ const products = [
         id: 1,
         name: 'Culture | Nuts Overload',
         description: 'Premium dark chocolate loaded with almonds, pistachios, and cashews.',
-        price: 249,
+        price: 199,
         image: 'assets/nuts-overload.jpg',
         category: 'triple-choco', // Displaying in Triple Chocolates section
         ingredients: ['Dark chocolate (70% cocoa)', 'Almonds', 'Pistachios', 'Cashews', 'Cocoa butter']
@@ -306,8 +306,8 @@ function showAddToCartNotification(productName) {
     const notification = document.createElement('div');
     notification.className = 'add-to-cart-notification';
     notification.innerHTML = `
-        < span class="notif-icon" >✓</span >
-            <span class="notif-text">${productName} added to cart</span>
+        <span class="notif-icon">✓</span>
+        <span class="notif-text">${productName} added to cart</span>
     `;
 
     document.body.appendChild(notification);
@@ -608,6 +608,16 @@ window.openProductDetails = function (productId) {
 };
 function handleCheckout(e) {
     e.preventDefault();
+
+    // Prevent double submission
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    if (submitBtn.disabled) return;
+
+    // Disable button and show spinner
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+
     const formData = new FormData(e.target);
     const method = formData.get('paymentMethod');
 
