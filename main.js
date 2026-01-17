@@ -174,15 +174,15 @@ const customPriceDisplay = document.getElementById('customTotalPrice');
 const CUSTOM_BASE_PRICE = 140;
 const TOPPING_PRICES = {
     // Fruits/Inclusions
-    'Strawberry': 6,
-    'Blueberry': 6,
+    'Strawberry': 7,
+    'Blueberry': 9,
     'Cranberry': 6,
     'Kiwi': 6,
     // Nuts
     'Almonds': 6,
-    'Raisins': 6,
+    'Raisins': 9,
     'Cashew': 6,
-    'Hazelnuts': 10
+    'Hazelnuts': 14
 };
 
 // Calculate total price based on selected toppings
